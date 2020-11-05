@@ -57,4 +57,20 @@ export default {
 .sheet-info h5 {
   margin-top: 5px;
 }
+
+a:link {
+  text-decoration: none;
+}
+
+a:visited {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+a:active {
+  text-decoration: none;
+}
 </style>

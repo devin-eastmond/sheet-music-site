@@ -36,6 +36,11 @@
     </div>
 
     <h1 class="page-header" id="filterTitle">All Sheet Music</h1>
+    <div v-if="numSongs == 0">
+      <div class="rectangle rectangle-white" id="noContent">
+        <h4>No results matching your search criteria...</h4>
+      </div>
+    </div>
 
     <SongsList :songs="songs"/>
 
@@ -57,7 +62,29 @@ export default {
   },
   computed: {
     songs() {
-      return this.$root.$data.songs;
+      let filteredSongs = this.$root.$data.songs;
+      let difficultyFilter = this.$route.query.difficulty;
+      if (difficultyFilter != null) {
+        filteredSongs = filteredSongs.filter(song => song.difficulty === difficultyFilter);
+      }
+      let genreFilter = this.$route.query.genre;
+      if (genreFilter != null) {
+        filteredSongs = filteredSongs.filter(song => song.genre === genreFilter);
+      }
+      return filteredSongs;
+    },
+    numSongs() {
+      let filteredSongs = this.$root.$data.songs;
+      let difficultyFilter = this.$route.query.difficulty;
+      if (difficultyFilter != null) {
+        filteredSongs = filteredSongs.filter(song => song.difficulty === difficultyFilter);
+      }
+      let genreFilter = this.$route.query.genre;
+      if (genreFilter != null) {
+        filteredSongs = filteredSongs.filter(song => song.genre === genreFilter);
+      }
+
+      return filteredSongs.length;
     }
   }
 }
