@@ -24,5 +24,6 @@ export default {
 
 .footer span {
   color: rgb(157, 157, 157);
+  text-align: left;
 }
 </style>
