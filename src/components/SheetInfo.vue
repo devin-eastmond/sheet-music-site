@@ -1,6 +1,6 @@
 <template>
   <div class="SheetInfo">
-    <a :href="filteredLink">
+    <a href="#">
       <div class="sheet-info">
         <img alt="picture" :src="routeToImage" class="img-thumbnail">
         <h5 class="song-name">{{ name }}</h5>

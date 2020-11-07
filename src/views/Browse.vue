@@ -3,12 +3,12 @@
     <Header pageName="Browse Music"/>
     <div class="rectangle-white form-block">
       <h2>Filters</h2>
-      <form>
+      <form @submit="applyFilters">
         <div class="row">
           <div class="col-md-3">
             <div class="form-group">
               <label for="genreFilter">Genre</label>
-              <select class="form-control" id="genreFilter">
+              <select class="form-control" id="genreFilter" v-model="genre">
                 <option></option>
                 <option>Movie Music</option>
                 <option>Video Game Soundtracks</option>
@@ -19,7 +19,7 @@
           <div class="col-md-3">
             <div class="form-group">
               <label for="difficultyFilter">Difficulty</label>
-              <select class="form-control" id="difficultyFilter">
+              <select class="form-control" id="difficultyFilter" v-model="difficulty">
                 <option></option>
                 <option>Easy</option>
                 <option>Intermediate</option>
@@ -35,7 +35,7 @@
       <hr>
     </div>
 
-    <h1 class="page-header" id="filterTitle">All Sheet Music</h1>
+    <h1 class="page-header" id="filterTitle">{{ pageTitle }}</h1>
     <div v-if="numSongs == 0">
       <div class="rectangle rectangle-white" id="noContent">
         <h4>No results matching your search criteria...</h4>
@@ -55,6 +55,14 @@ import SongsList from '@/components/SongsList.vue'
 import Footer from '@/components/Footer.vue'
 export default {
   name: 'Browse',
+  data() {
+    return {
+      pageTitle: 'Sheet Music',
+      genre: '',
+      difficulty: '',
+      search: ''
+    }
+  },
   components: {
     Header,
     SongsList,
@@ -64,12 +72,17 @@ export default {
     songs() {
       let filteredSongs = this.$root.$data.songs;
       let difficultyFilter = this.$route.query.difficulty;
+      let genreFilter = this.$route.query.genre;
+      let searchFilter = this.$route.query.search;
+
       if (difficultyFilter != null) {
         filteredSongs = filteredSongs.filter(song => song.difficulty === difficultyFilter);
       }
-      let genreFilter = this.$route.query.genre;
       if (genreFilter != null) {
         filteredSongs = filteredSongs.filter(song => song.genre === genreFilter);
+      }
+      if (searchFilter != null) {
+        filteredSongs = filteredSongs.filter(song => (song.name.includes(searchFilter) || song.composer.includes(searchFilter)));
       }
       return filteredSongs;
     },
@@ -85,6 +98,27 @@ export default {
       }
 
       return filteredSongs.length;
+    }
+  },
+  methods: {
+    applyFilters(event) {
+      event.preventDefault();
+      console.log(this.genre.replaceAll(' ', '-').toLowerCase());
+      console.log(this.difficulty.replaceAll(' ', '-').toLowerCase());
+      let route = "/browse?";
+      if (this.genre != '' && this.difficulty != '') {
+        route += "genre=" + this.genre.replaceAll(' ', '-').toLowerCase();
+        route += "&difficulty=" + this.difficulty.replaceAll(' ', '-').toLowerCase();
+      } else if (this.genre != '') {
+        route += "genre=" + this.genre.replaceAll(' ', '-').toLowerCase();
+      } else if (this.difficulty != '') {
+        route += "difficulty=" + this.difficulty.replaceAll(' ', '-').toLowerCase();
+      }
+      console.log(route);
+      this.$router.replace(route);
+    },
+    formattedFilterString(str) {
+      return str.replace(' ', '-').toLowerCase();
     }
   }
 }

@@ -47,8 +47,8 @@
             <router-link to="/about" class="nav-link">About</router-link>
           </li>
         </ul>
-        <form class="form-inline my-2 my-lg-0">
-          <input class="form-control mr-sm-2" id="searchInput" type="search" placeholder="Search" aria-label="Search">
+        <form class="form-inline my-2 my-lg-0" @submit="searchSubmit">
+          <input class="form-control mr-sm-2" id="searchInput" type="search" placeholder="Search" aria-label="Search" v-model="searchInput">
           <button class="btn btn-outline-success my-2 my-sm-0" id="submitSearch" type="submit">Search</button>
         </form>
       </div>
@@ -63,6 +63,11 @@
 <script>
 export default {
   name: 'App',
+  data() {
+    return {
+      searchInput: ''
+    }
+  },
   methods: {
     isActiveLink(activeLink) {
       if (this.$router.currentRoute.path == activeLink)
@@ -70,6 +75,12 @@ export default {
       else {
         return ""
       }
+    },
+    searchSubmit(event) {
+      event.preventDefault();
+      console.log(this.searchInput);
+      let route = "browse?search=" + this.searchInput;
+      this.$router.replace(route);
     }
   }
 }

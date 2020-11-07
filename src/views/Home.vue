@@ -25,7 +25,7 @@
       <h2>Easily download and print your sheet music, <br>or pull it up on your iPad or tablet and <br>play it from there</h2>
       <img src="images/sheetMusic.png" id="sheetMusicImage">
       <div>
-        <button type="button" class="btn btn-info btn-lg" onclick="window.location.href='browseMusic.html';">Download Sheet Music</button>
+        <button type="button" class="btn btn-info btn-lg" v-on:click="goToRoute('/browse')">Download Sheet Music</button>
       </div>
     </div>
     <Footer/>
