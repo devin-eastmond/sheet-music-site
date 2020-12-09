@@ -9,14 +9,14 @@
             <input v-model="title" placeholder="Title">
             <p></p>
             <label for="difficulty" class="form-label">Difficulty: </label>
-            <select name="difficulty" id="difficulty">
+            <select v-model="difficulty" name="difficulty" id="difficulty">
               <option value="easy">Easy</option>
               <option value="intermediate">Intermediate</option>
               <option value="advanced">Advanced</option>
             </select>
             <br>
             <label for="genre" class="form-label">Genre: </label>
-            <select name="genre" id="genre">
+            <select v-model="genre" name="genre" id="genre">
               <option value="movie-music">Movie Music</option>
               <option value="video-game-soundtracks">Video Game Soundtrack</option>
               <option value="religious-music">Religious Music</option>
@@ -103,7 +103,7 @@ export default {
         const audioData = new FormData();
         audioData.append('audio', this.audio, this.audio.name)
         let r3 = await axios.post('/api/audio', audioData);
-        await axios.post('/api/items', {
+        await axios.post('/api/songs', {
           title: this.title,
           difficulty: this.difficulty,
           genre: this.genre,
