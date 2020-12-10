@@ -70,14 +70,6 @@
                   </div>
                 </div>
               </div>
-              <div class="upload" v-if="findSong">
-                <input v-model="findSong.title">
-                <p></p>
-                <img :src="findSong.path" />
-              </div>
-              <div class="actions" v-if="findSong">
-                <button @click="deleteSong(findSong)">Delete</button>
-              </div>
             </div>
 
           </div>
@@ -104,7 +96,7 @@
             <br>
             <input v-model="findSong.composer" placeholder="Composer">
             <p></p>
-            <button class="btn btn-submit" @click="upload">Edit song</button>
+            <button class="btn btn-submit" @click="editSong(findSong)">Edit song</button>
             <button class="btn btn-danger" @click="deleteSong(findSong)">Delete song</button>
           </div>
         </div>
@@ -207,6 +199,21 @@ export default {
         console.log(error);
       }
     },
+    async editSong(song) {
+      try {
+        await axios.put("/api/songs/" + song._id, {
+          title: this.findSong.title,
+          difficulty: this.findSong.difficulty,
+          genre: this.findSong.genre,
+          composer: this.findSong.composer
+        });
+        this.findSong = null;
+        this.getSongs();
+        return true;
+      } catch (error) {
+        console.log(error);
+      }
+    },
     thumbnailChanged(event) {
       this.thumbnail = event.target.files[0]
       this.thumbnailTempPath = URL.createObjectURL(this.thumbnail);
@@ -285,6 +292,21 @@ input[type="file"] {
   align-content: center;
   margin: auto;
   text-align: center;
+}
+
+.suggestions {
+  width: 200px;
+  border: 1px solid #ccc;
+  background-color: white;
+}
+
+.suggestion {
+  min-height: 20px;
+}
+
+.suggestion:hover {
+  background-color: #5BDEFF;
+  color: #fff;
 }
 
 </style>

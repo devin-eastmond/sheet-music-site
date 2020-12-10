@@ -157,6 +157,11 @@ export default {
   border-radius: 50%;
 }
 
+.rectangle-blue .sample-image {
+  border-radius: 0%;
+  background-color: white;
+}
+
 .rectangle-blue p {
   color: white;
 }
