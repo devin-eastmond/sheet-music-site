@@ -1,6 +1,7 @@
 <template>
   <footer class="footer">
     <div class="container">
+      <a class="btn-link" href="/admin">Admin </a>
       <span>Click <a class="btn-link" href="https://github.com/devinator9876/sheet-music-vue.git" target="_blank">here</a> to visit my GitHub page</span>
     </div>
   </footer>
