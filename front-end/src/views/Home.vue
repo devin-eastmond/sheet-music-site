@@ -177,8 +177,18 @@ export default {
   color: rgb(0, 139, 137);
 }
 
+.rectangle-blue .btn-danger {
+  background-color: #d9534f;
+  color: white;
+}
+
 .rectangle-blue button:hover {
   background-color: rgb(212, 249, 255);
   color: rgb(0, 139, 137);
+}
+
+.rectangle-blue .btn-danger:hover {
+  background-color: #d04a36;
+  color: white;
 }
 </style>

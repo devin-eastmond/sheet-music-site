@@ -55,6 +55,77 @@
         </div>
       </div>
     </div>
+
+    <div class="rectangle-blue form-block">
+      <h2>Delete/edit a Song</h2>
+      <div class="row">
+        <div class="col-md-3">
+          <div class="form-block">
+
+            <div class="edit">
+              <div class="form">
+                <input v-model="findTitle" placeholder="Search">
+                <div class="suggestions" v-if="suggestions.length > 0">
+                  <div class="suggestion" v-for="s in suggestions" :key="s.id" @click="selectSong(s)">{{s.title}}
+                  </div>
+                </div>
+              </div>
+              <div class="upload" v-if="findSong">
+                <input v-model="findSong.title">
+                <p></p>
+                <img :src="findSong.path" />
+              </div>
+              <div class="actions" v-if="findSong">
+                <button @click="deleteSong(findSong)">Delete</button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="col-md-3">
+          <div class="form-block" v-if="findSong">
+
+            <input v-model="findSong.title" placeholder="Title">
+            <p></p>
+            <label for="difficulty" class="form-label">Difficulty: </label>
+            <select v-model="findSong.difficulty" name="difficulty" id="difficulty">
+              <option value="easy">Easy</option>
+              <option value="intermediate">Intermediate</option>
+              <option value="advanced">Advanced</option>
+            </select>
+            <br>
+            <label for="genre" class="form-label">Genre: </label>
+            <select v-model="findSong.genre" name="genre" id="genre">
+              <option value="movie-music">Movie Music</option>
+              <option value="video-game-soundtracks">Video Game Soundtrack</option>
+              <option value="religious-music">Religious Music</option>
+            </select>
+            <br>
+            <input v-model="findSong.composer" placeholder="Composer">
+            <p></p>
+            <button class="btn btn-submit" @click="upload">Edit song</button>
+            <button class="btn btn-danger" @click="deleteSong(findSong)">Delete song</button>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="display">
+            <div class="upload" v-if="findSong">
+              <h5>Thumbnail</h5>
+              <img :src="findSong.thumbnailPath" class="sample-image"/>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="display">
+            <div class="upload" v-if="findSong">
+              <h5>PDF</h5>
+              <img :src="findSong.pdfPath" class="sample-image"/>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
     <Footer/>
   </div>
 </template>
@@ -76,11 +147,23 @@ export default {
       thumbnailTempPath: "",
       pdf: null,
       pdfTempPath: "",
+      songs: [],
+      findTitle: "",
+      findSong: null,
     }
   },
   components: {
     Header,
     Footer
+  },
+  created() {
+    this.getSongs();
+  },
+  computed: {
+    suggestions() {
+      let songs = this.songs.filter(song => song.title.toLowerCase().startsWith(this.findTitle.toLowerCase()));
+      return songs.sort((a, b) => a.title > b.title);
+    }
   },
   methods: {
     async upload() {
@@ -88,11 +171,11 @@ export default {
         const thumbnailData = new FormData();
         thumbnailData.append('photo', this.thumbnail, this.thumbnail.name)
         let r1 = await axios.post('/api/photos', thumbnailData);
-        
-	const pdfData = new FormData();
+
+        const pdfData = new FormData();
         pdfData.append('photo', this.pdf, this.pdf.name)
         let r2 = await axios.post('/api/photos', pdfData);
-        
+
         await axios.post('/api/songs', {
           title: this.title,
           difficulty: this.difficulty,
@@ -105,6 +188,25 @@ export default {
         console.log(error);
       }
     },
+    async getSongs() {
+      try {
+        let response = await axios.get("/api/songs");
+        this.songs = response.data;
+        return true;
+      } catch (error) {
+        console.log(error);
+      }
+    },
+    async deleteSong(song) {
+      try {
+        await axios.delete("/api/songs/" + song._id);
+        this.findSong = null;
+        this.getSongs();
+        return true;
+      } catch (error) {
+        console.log(error);
+      }
+    },
     thumbnailChanged(event) {
       this.thumbnail = event.target.files[0]
       this.thumbnailTempPath = URL.createObjectURL(this.thumbnail);
@@ -112,6 +214,10 @@ export default {
     pdfChanged(event) {
       this.pdf = event.target.files[0]
       this.pdfTempPath = URL.createObjectURL(this.pdf);
+    },
+    selectSong(song) {
+      this.findTitle = "";
+      this.findSong = song;
     },
   }
 }
@@ -142,12 +248,25 @@ export default {
 }
 
 .form-block button {
-  margin: 5px 0;
+  margin: 5px 5px;
 }
 
-.form-label {
+.rectangle-white .form-label {
   color: rgb(0, 111, 139);
   padding-right: 10px;
+}
+
+.rectangle-blue .form-label {
+  color: white;
+  padding-right: 10px;
+}
+
+.rectangle-white, .rectangle-blue {
+  padding: 40px;
+}
+
+.rectangle-white {
+  padding-top: 0px;
 }
 
 .rectangle-white h2, .rectangle-white p, .rectangle-white h5 {
