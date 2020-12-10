@@ -34,14 +34,6 @@
               <input id="pdf-upload" type="file" name="pdf" @change="pdfChanged">
             </label>
             <p></p>
-            <label for="audio-upload" class="btn btn-info button-label">
-              Upload audio
-              <input id="audio-upload" type="file" name="audio" @change="audioChanged">
-            </label>
-            <div class="upload" v-if="audio">
-              <p>{{ audio.name }}</p>
-            </div>
-            <p></p>
             <button class="btn btn-dark" @click="upload">Add song</button>
           </div>
         </div>
@@ -84,7 +76,6 @@ export default {
       thumbnailTempPath: "",
       pdf: null,
       pdfTempPath: "",
-      audio: null,
     }
   },
   components: {
@@ -97,12 +88,11 @@ export default {
         const thumbnailData = new FormData();
         thumbnailData.append('photo', this.thumbnail, this.thumbnail.name)
         let r1 = await axios.post('/api/photos', thumbnailData);
-        const pdfData = new FormData();
+        
+	const pdfData = new FormData();
         pdfData.append('photo', this.pdf, this.pdf.name)
         let r2 = await axios.post('/api/photos', pdfData);
-        const audioData = new FormData();
-        audioData.append('audio', this.audio, this.audio.name)
-        let r3 = await axios.post('/api/audio', audioData);
+        
         await axios.post('/api/songs', {
           title: this.title,
           difficulty: this.difficulty,
@@ -110,7 +100,6 @@ export default {
           composer: this.composer,
           thumbnailPath: r1.data.path,
           pdfPath: r2.data.path,
-          audioPath: r3.data.path
         });
       } catch (error) {
         console.log(error);
@@ -123,9 +112,6 @@ export default {
     pdfChanged(event) {
       this.pdf = event.target.files[0]
       this.pdfTempPath = URL.createObjectURL(this.pdf);
-    },
-    audioChanged(event) {
-      this.audio = event.target.files[0]
     },
   }
 }

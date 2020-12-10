@@ -15,12 +15,6 @@ const uploadImage = multer({
     fileSize: 10000000
   }
 });
-const uploadAudio = multer({
-  dest: '../front-end/public/audio/',
-  limits: {
-    fileSize: 100000000000
-  }
-});
 
 const mongoose = require('mongoose');
 
@@ -37,7 +31,6 @@ const songSchema = new mongoose.Schema({
   composer: String,
   thumbnailPath: String,
   pdfPath: String,
-  audioPath: String,
 });
 
 
@@ -57,17 +50,6 @@ app.post('/api/photos', uploadImage.single('photo'), async (req, res) => {
 });
 
 
-app.post('/api/audio', uploadAudio.single('audio'), async (req, res) => {
-  // Just a safety check
-  if (!req.file) {
-    return res.sendStatus(400);
-  }
-  res.send({
-    path: "/audio/" + req.file.filename
-  });
-});
-
-
 app.post('/api/songs', async (req, res) => {
   const song = new Song({
     title: req.body.title,
@@ -76,11 +58,21 @@ app.post('/api/songs', async (req, res) => {
     composer: req.body.composer,
     thumbnailPath: req.body.thumbnailPath,
     pdfPath: req.body.pdfPath,
-    audioPath: req.body.audioPath,
   });
   try {
     await song.save();
     res.send(song);
+  } catch (error) {
+    console.log(error);
+    res.sendStatus(500);
+  }
+});
+
+
+app.get('/api/songs', async (req, res) => {
+  try {
+    let songs = await Song.find();
+    res.send(songs);
   } catch (error) {
     console.log(error);
     res.sendStatus(500);

@@ -53,6 +53,7 @@
 import Header from '@/components/Header.vue'
 import SongsList from '@/components/SongsList.vue'
 import Footer from '@/components/Footer.vue'
+import axios from 'axios';
 export default {
   name: 'Browse',
   data() {
@@ -60,8 +61,12 @@ export default {
       pageTitle: 'Sheet Music',
       genre: '',
       difficulty: '',
-      search: ''
+      search: '',
+      songsList: [],
     }
+  },
+  created() {
+    this.getSongs();
   },
   components: {
     Header,
@@ -70,7 +75,7 @@ export default {
   },
   computed: {
     songs() {
-      let filteredSongs = this.$root.$data.songs;
+      let filteredSongs = this.songsList;
       let difficultyFilter = this.$route.query.difficulty;
       let genreFilter = this.$route.query.genre;
       let searchFilter = this.$route.query.search;
@@ -87,7 +92,7 @@ export default {
       return filteredSongs;
     },
     numSongs() {
-      let filteredSongs = this.$root.$data.songs;
+      let filteredSongs = this.songsList;
       let difficultyFilter = this.$route.query.difficulty;
       if (difficultyFilter != null) {
         filteredSongs = filteredSongs.filter(song => song.difficulty === difficultyFilter);
@@ -119,7 +124,16 @@ export default {
     },
     formattedFilterString(str) {
       return str.replace(' ', '-').toLowerCase();
-    }
+    },
+    async getSongs() {
+      try {
+        let response = await axios.get("/api/songs");
+        this.songsList = response.data;
+        return true;
+      } catch (error) {
+        console.log(error);
+      }
+    },
   }
 }
 </script>

@@ -3,7 +3,7 @@
   <div class="row">
     <figure class="col-md-4" v-for="song in songs" :key="song.id">
       <div class="song">
-        <SheetInfo :name="song.name" :filter="songFilter(song.name)" :difficulty="song.difficulty" :composer="song.composer" :routeToImage="song.thumbnailPath" />
+        <SheetInfo :name="song.name" :filter="song.name" :difficulty="song.difficulty" :composer="song.composer" :routeToImage="song.thumbnailPath" />
       </div>
     </figure>
   </div>
@@ -20,11 +20,6 @@ export default {
   components: {
     SheetInfo
   },
-  methods: {
-    songFilter(songName) {
-      return songName.replace(/ /g, "_").replace(/:/g, "_");
-    }
-  }
 }
 </script>
 
