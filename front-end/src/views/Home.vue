@@ -1,6 +1,6 @@
 <template>
-  <div class="home">
-    <div class="hero-image" style="background-image: url('images/pianoSheetMusic.JPG');"></div>
+  <div class="home" style="background-image: url('images/pattern2.png'); background-size: 600px;">
+    <div class="hero-image" style="background-image: url('images/pianoSheetMusic.png');"></div>
 
     <div class="rectangle rectangle-white">
       <h2>10+ free piano arrangements in the genre of your choice</h2>
@@ -11,7 +11,7 @@
       </div>
     </div>
 
-    <div class="rectangle rectangle-blue">
+    <div class="rectangle rectangle-blue" style="background-image: url('images/pattern.png');">
       <h2>Play according to your difficulty level</h2>
       <img src="images/piano.png" id="pianoImage">
       <div>
@@ -146,6 +146,9 @@ export default {
 
 .rectangle-blue {
   background-color: rgb(0, 139, 137);
+  border-width: 5px;
+  border-color: rgb(0, 107, 106);;
+  border-style: double;
 }
 
 .rectangle-blue h2, .rectangle-blue h3, .rectangle-blue h4 {

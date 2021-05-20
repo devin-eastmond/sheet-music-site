@@ -1,7 +1,7 @@
 <template>
-  <div class="browse">
-    <Header pageName="Browse Music"/>
-    <div class="rectangle-white form-block">
+  <div class="browse" style="background-image: url('images/pattern2.png'); background-size: 600px;">
+    <Header pageName="Browse Music" style="margin: 0px"/>
+    <div class="rectangle-white form-block" style="background-color: white; padding-top: 20px">
       <h2>Filters</h2>
       <form @submit="applyFilters">
         <div class="row">
