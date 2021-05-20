@@ -80,4 +80,35 @@ app.get('/api/songs', async (req, res) => {
 });
 
 
+app.delete('/api/songs/:id', async (req, res) => {
+  try {
+    await Song.deleteOne({
+      _id: req.params.id
+    });
+    res.sendStatus(200);
+  } catch (error) {
+    console.log(error);
+    res.sendStatus(500);
+  }
+});
+
+
+app.put('/api/songs/:id', async (req, res) => {
+  try {
+    const song = await Song.findOne({
+      _id: req.params.id
+    });
+    song.title = req.body.title;
+    song.difficulty = req.body.difficulty;
+    song.genre = req.body.genre;
+    song.composer = req.body.composer;
+    await song.save();
+    res.sendStatus(200);
+  } catch (error) {
+    console.log(error);
+    res.sendStatus(500);
+  }
+});
+
+
 app.listen(3000, () => console.log('Server listening on port 3000!'));
