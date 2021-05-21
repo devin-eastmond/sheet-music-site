@@ -69,13 +69,11 @@ export default {
 .rectangle h2 {
   padding-top: 30px;
   padding-bottom: 30px;
-  text-transform: uppercase;
 }
 
 .rectangle h3 {
   padding-top: 20px;
   padding-bottom: 20px;
-  text-transform: uppercase;
 }
 
 .rectangle div {
@@ -148,7 +146,7 @@ export default {
   background-color: rgb(0, 139, 137);
   border-width: 5px;
   border-color: rgb(0, 107, 106);;
-  border-style: double;
+  border-style: double none;
 }
 
 .rectangle-blue h2, .rectangle-blue h3, .rectangle-blue h4 {

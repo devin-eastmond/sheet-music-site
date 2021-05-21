@@ -49,7 +49,7 @@
         </ul>
         <form class="form-inline my-2 my-lg-0" @submit="searchSubmit">
           <input class="form-control mr-sm-2" id="searchInput" type="search" placeholder="Search" aria-label="Search" v-model="searchInput">
-          <button class="btn btn-outline-success my-2 my-sm-0" id="submitSearch" type="submit">Search</button>
+          <button class="btn btn-outline-info my-2 my-sm-0" id="submitSearch" type="submit">Search</button>
         </form>
       </div>
     </nav>
@@ -89,13 +89,14 @@ export default {
 
 <style>
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  font-family: "Palatino", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
 }
 
 header {
+
   height: 75px;
   background-color: rgb(0, 111, 139);
   justify-content: center;
@@ -114,7 +115,6 @@ header h1 a:hover {
   color: white;
   text-decoration: none;
 }
-
 
 /******** Navbar Styling ********/
 .navbar {
