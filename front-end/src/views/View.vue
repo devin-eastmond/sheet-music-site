@@ -54,34 +54,45 @@
 // @ is an alias to /src
 import Header from '@/components/Header.vue'
 import Footer from '@/components/Footer.vue'
-//import axios from 'axios';
+import axios from 'axios';
 export default {
   name: 'ViewSong',
   data() {
     return {
       pageTitle: 'Sheet Music',
+      song: {
+        thumbnailPath: '',
+        name: '',
+        composer: '',
+        difficulty: '',
+        genre: '',
+        routeToPDF: ''
+      }
     }
   },
   components: {
     Header,
     Footer,
   },
+  created() {
+    this.getSong();
+  },
   computed: {
     thumbnailPath() {
-      return this.getSong().thumbnailPath;
+      return this.song.thumbnailPath;
     },
     name() {
-      return this.getSong().name;
+      return this.song.title;
     },
     composer() {
-      return this.getSong().composer;
+      return this.song.composer;
     },
     difficulty() {
-      let difficulty = this.getSong().difficulty;
+      let difficulty = this.song.difficulty;
       return difficulty.charAt(0).toUpperCase() + difficulty.slice(1)
     },
     genre() {
-      let genre = this.getSong().genre;
+      let genre = this.song.genre;
       const words = genre.split("-");
 
       for (let i = 0; i < words.length; i++) {
@@ -91,13 +102,26 @@ export default {
       return words.join(" ");
     },
     routeToPDF() {
-      return this.getSong().routeToPDF;
+      return this.song.pdfPath;
     }
   },
   methods: {
-    getSong() {
-      return this.$root.$data.songs[this.$route.query.song - 1];
-    }
+    async getSong() {
+      try {
+        let response = await axios.get("/api/songs");
+        let songs = response.data;
+        for (let i = 0; i < songs.length; i++) {
+          if (songs[i]._id == this.$route.query.song) {
+            this.song = songs[i];
+            break;
+          }
+        }
+        console.log(this.song);
+        return true;
+      } catch (error) {
+        console.log(error);
+      }
+    },
   }
 }
 </script>

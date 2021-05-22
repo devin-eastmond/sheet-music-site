@@ -4,7 +4,7 @@
     <figure class="col-lg-3 col-md-4 col-sm-6" v-for="song in songs" :key="song.id">
       <div class="wrapper">
         <router-link :to="getSongLink(song)">
-          <SheetInfo :name="song.name" :filter="song.name" :difficulty="song.difficulty" :composer="song.composer" :routeToImage="song.thumbnailPath" />
+          <SheetInfo :name="song.title" :filter="song.title" :difficulty="song.difficulty" :composer="song.composer" :routeToImage="song.thumbnailPath" />
         </router-link>
       </div>
     </figure>
@@ -24,7 +24,7 @@ export default {
   },
   methods: {
     getSongLink(song) {
-      return "/viewSong?song=" + song.id;
+      return "/viewSong?song=" + song._id;
     }
   }
 }

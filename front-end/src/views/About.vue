@@ -1,7 +1,7 @@
 <template>
   <div class="about">
     <Header pageName="About"/>
-    <div class="container">
+    <!--<div class="container">
       <div class="row">
 
         <div id="mdb-lightbox-ui"></div>
@@ -32,7 +32,7 @@
 
 
       </div>
-    </div>
+    </div>-->
     <Footer/>
   </div>
 </template>
@@ -51,7 +51,7 @@ export default {
 </script>
 
 <style>
-  .sheet-info {
+  /*.sheet-info {
     color: white;
     background-color: rgb(0, 111, 139);
     text-decoration: none;
@@ -70,5 +70,5 @@ export default {
 
   .sheet-info h5 {
     margin-top: 5px;
-  }
+  }*/
 </style>

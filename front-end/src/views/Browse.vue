@@ -53,7 +53,7 @@
 import Header from '@/components/Header.vue'
 import SongsList from '@/components/SongsList.vue'
 import Footer from '@/components/Footer.vue'
-//import axios from 'axios';
+import axios from 'axios';
 export default {
   name: 'Browse',
   data() {
@@ -65,7 +65,8 @@ export default {
     }
   },
   created() {
-    this.songsList = this.$root.$data.songs;//this.getSongs();
+    //this.songsList = this.$root.$data.songs;
+    this.getSongs();
     if (typeof this.$route.query.genre == 'undefined') {
       this.genre = '';
     } else {
@@ -151,18 +152,19 @@ export default {
     formattedFilterString(str) {
       return str.replace(' ', '-').toLowerCase();
     },
-    getSongs() {
-      return this.mock;
-    },
-    // async getSongs() {
-    //   try {
-    //     let response = await axios.get("/api/songs");
-    //     this.songsList = response.data;
-    //     return true;
-    //   } catch (error) {
-    //     console.log(error);
-    //   }
-    // },
+    //getSongs() {
+    //  return this.mock;
+    //},
+     async getSongs() {
+       try {
+         let response = await axios.get("/api/songs");
+         this.songsList = response.data;
+         console.log(this.songsList);
+         return true;
+       } catch (error) {
+         console.log(error);
+       }
+     },
   },
   watch: {
     songs: function() {
