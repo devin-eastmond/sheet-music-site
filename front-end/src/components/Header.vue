@@ -16,11 +16,11 @@ export default {
 <style>
 .jumbotron {
   color: white;
-  background-color: rgb(0, 139, 137);
+  background-color: rgb(60, 60, 60);
   padding-top: 40px;
   padding-bottom: 40px;
-  border-width: 2px;
-  border-color: rgb(0, 107, 106);;
+  border-width: 0px 0px 2px 0px;
+  border-color: rgb(171 16 31);
   border-style: solid;
   border-radius: 0px;
 }

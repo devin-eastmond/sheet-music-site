@@ -1,6 +1,7 @@
 <template>
   <div class="about">
     <Header pageName="About"/>
+    <LoadingPage/>
     <!--<div class="container">
       <div class="row">
 
@@ -41,11 +42,13 @@
 // @ is an alias to /src
 import Header from '@/components/Header.vue'
 import Footer from '@/components/Footer.vue'
+import LoadingPage from '@/components/LoadingPage.vue'
 export default {
   name: 'About',
   components: {
     Header,
-    Footer
+    Footer,
+    LoadingPage
   },
 }
 </script>

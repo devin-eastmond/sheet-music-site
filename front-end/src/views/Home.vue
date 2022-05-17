@@ -1,13 +1,13 @@
 <template>
-  <div class="home" style="background-image: url('images/pattern2.png'); background-size: 600px;">
-    <div class="hero-image" style="background-image: url('images/pianoSheetMusic.png');"></div>
+  <div class="home" style="background-size: 600px;">
+    <div class="hero-image" style="background-image: url('images/pianoSheetMusic2.jpg');"></div>
 
     <div class="rectangle rectangle-white">
       <h2>10+ free piano arrangements in the genre of your choice</h2>
       <div>
-        <button type="button" class="btn btn-info btn-lg" v-on:click="goToRoute('/browse?genre=movie-music')">Movie Music</button>
-        <button type="button" class="btn btn-info btn-lg" v-on:click="goToRoute('/browse?genre=video-game-soundtracks')">Video Game Soundtracks</button>
-        <button type="button" class="btn btn-info btn-lg" v-on:click="goToRoute('/browse?genre=religious-music')">Religious Music</button>
+        <button type="button" class="btn btn-danger btn-lg" v-on:click="goToRoute('/browse?genre=movie-music')">Movie Music</button>
+        <button type="button" class="btn btn-danger btn-lg" v-on:click="goToRoute('/browse?genre=video-game-soundtracks')">Video Game Soundtracks</button>
+        <button type="button" class="btn btn-danger btn-lg" v-on:click="goToRoute('/browse?genre=religious-music')">Religious Music</button>
       </div>
     </div>
 
@@ -15,9 +15,9 @@
       <h2>Play according to your difficulty level</h2>
       <img src="images/piano.png" id="pianoImage">
       <div>
-        <button type="button" class="btn btn-outline-info btn-lg" v-on:click="goToRoute('/browse?difficulty=easy')">Easy</button>
-        <button type="button" class="btn btn-outline-info btn-lg" v-on:click="goToRoute('/browse?difficulty=intermediate')">Intermediate</button>
-        <button type="button" class="btn btn-outline-info btn-lg" v-on:click="goToRoute('/browse?difficulty=advanced')">Advanced</button>
+        <button type="button" class="btn btn-outline-danger btn-lg" v-on:click="goToRoute('/browse?difficulty=easy')">Easy</button>
+        <button type="button" class="btn btn-outline-danger btn-lg" v-on:click="goToRoute('/browse?difficulty=intermediate')">Intermediate</button>
+        <button type="button" class="btn btn-outline-danger btn-lg" v-on:click="goToRoute('/browse?difficulty=advanced')">Advanced</button>
       </div>
     </div>
 
@@ -25,7 +25,7 @@
       <h2>Easily download and print your sheet music, <br>or pull it up on your iPad or tablet and <br>play it from there</h2>
       <img src="images/sheetMusic.png" id="sheetMusicImage">
       <div>
-        <button type="button" class="btn btn-info btn-lg" v-on:click="goToRoute('/browse')">Download Sheet Music</button>
+        <button type="button" class="btn btn-danger btn-lg" v-on:click="goToRoute('/browse')">Download Sheet Music</button>
       </div>
     </div>
     <Footer/>
@@ -49,6 +49,10 @@ export default {
 </script>
 
 <style>
+button {
+  border-radius: 0px!important;
+}
+
 .hero-image {
   width: 100%;
   height: 400px;
@@ -139,14 +143,21 @@ export default {
 }
 
 .rectangle-white h2, .rectangle-white h3, .rectangle-white h4 {
-  color: rgb(0, 111, 139);
+  /* color: rgb(0, 111, 139); */
+  color: rgb(80, 80, 80);
 }
 
+/* body {
+  background-color: grey;
+} */
+
 .rectangle-blue {
-  background-color: rgb(0, 139, 137);
-  border-width: 5px;
-  border-color: rgb(0, 107, 106);;
-  border-style: double none;
+  /* background-color: rgb(0, 139, 137); */
+  background-color: rgb(60, 60, 60);
+  border-width: 15px;
+  /* border-color: rgb(0, 107, 106); */
+  border-color: rgb(171 16 31);
+  border-style: solid none;
 }
 
 .rectangle-blue h2, .rectangle-blue h3, .rectangle-blue h4 {
@@ -178,7 +189,15 @@ export default {
   background-color: rgba(255, 255, 255, 0.25);
 }
 
-.rectangle-blue button {
+.btn-danger {
+  background-color: rgb(179, 0, 0)
+}
+
+h2 {
+  font-size: 45px;
+}
+
+/* .rectangle-blue button {
   background-color: white;
   color: rgb(0, 139, 137);
 }
@@ -196,5 +215,5 @@ export default {
 .rectangle-blue .btn-danger:hover {
   background-color: #d04a36;
   color: white;
-}
+} */
 </style>

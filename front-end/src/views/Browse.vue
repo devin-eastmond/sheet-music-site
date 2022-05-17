@@ -28,22 +28,24 @@
             </div>
           </div>
           <div class="col-md-3">
-            <button type="submit" id="submitFilters" class="btn btn-info">Submit</button>
+            <button type="submit" id="submitFilters" class="btn btn-danger">Submit</button>
           </div>
         </div>
       </form>
       <hr>
     </div>
+    <LoadingPage v-if="isLoading"/>
+    <div class="Content" v-else>
 
-    <h1 class="page-header" id="filterTitle">{{ pageTitle }}</h1>
-    <div v-if="numSongs == 0">
-      <div class="rectangle rectangle-white" id="noContent">
-        <h4>No results matching your search criteria...</h4>
+      <h1 class="page-header" id="filterTitle">{{ pageTitle }}</h1>
+      <div v-if="numSongs == 0">
+        <div class="rectangle rectangle-white" id="noContent">
+          <h4>No results matching your search criteria...</h4>
+        </div>
       </div>
+
+      <SongsList :songs="songs"/>
     </div>
-
-    <SongsList :songs="songs"/>
-
     <Footer/>
   </div>
 </template>
@@ -53,7 +55,8 @@
 import Header from '@/components/Header.vue'
 import SongsList from '@/components/SongsList.vue'
 import Footer from '@/components/Footer.vue'
-import axios from 'axios';
+import LoadingPage from '@/components/LoadingPage.vue'
+//import axios from 'axios';
 export default {
   name: 'Browse',
   data() {
@@ -62,6 +65,7 @@ export default {
       difficulty: '',
       search: '',
       songsList: [],
+      isLoading: true,
     }
   },
   created() {
@@ -81,7 +85,8 @@ export default {
   components: {
     Header,
     SongsList,
-    Footer
+    Footer,
+    LoadingPage
   },
   computed: {
     songs() {
@@ -152,19 +157,20 @@ export default {
     formattedFilterString(str) {
       return str.replace(' ', '-').toLowerCase();
     },
-    //getSongs() {
-    //  return this.mock;
-    //},
-     async getSongs() {
-       try {
-         let response = await axios.get("/api/songs");
-         this.songsList = response.data;
-         console.log(this.songsList);
-         return true;
-       } catch (error) {
-         console.log(error);
-       }
-     },
+    getSongs() {
+      this.songsList = this.$root.$data.songs;
+      this.isLoading = false;
+    },
+    // async getSongs() {
+    //   try {
+    //     let response = await axios.get("/api/songs");
+    //     this.songsList = response.data;
+    //     this.isLoading = false;
+    //     return true;
+    //   } catch (error) {
+    //     console.log(error);
+    //   }
+    // },
   },
   watch: {
     songs: function() {
@@ -178,14 +184,17 @@ export default {
       } else {
         this.difficulty = this.$route.query.difficulty;
       }
-    }
+      this.isLoading = false;
+    },
   }
 }
 </script>
 
 <style>
 .page-header {
-  color: rgb(0, 111, 139);
+  /* color: rgb(0, 111, 139); */
+  /* color: rgb(80, 80, 80); */
+  color: rgb(179, 0, 0);
   margin: 40px;
 }
 
@@ -208,10 +217,12 @@ export default {
 }
 
 .form-block label {
-  color: rgb(0, 111, 139);
+  /* color: rgb(0, 111, 139); */
+  color: rgb(80, 80, 80);
 }
 
 .rectangle-white h2, .rectangle-white h3, .rectangle-white h4 {
-  color: rgb(0, 111, 139);
+  /* color: rgb(0, 111, 139); */
+  color: rgb(80, 80, 80)
 }
 </style>
