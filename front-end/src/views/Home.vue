@@ -13,9 +13,9 @@
     <div class="rectangle rectangle-blue" style="background-image: url('images/pattern3.png');">
       <h2>Browse our collection of piano sheet music</h2>
       <!-- <img src="images/piano.png" id="pianoImage"> -->
-      <div>
-        <Carousel/>
-        <!-- <div class="songs">
+      <Carousel/>
+      <!-- <div class="songs-holder">
+        <div class="songs">
           <a class="song">
             <SheetInfo style="zoom: 0.9;" name="Dragonborn" filter="video-game-soundtracks" difficulty="Advanced" composer="Jeremy Soule" routeToImage="images/displaySheets/Dragonborn.jpg" />
           </a>
@@ -31,8 +31,8 @@
           <a class="song">
             <SheetInfo style="zoom: 0.9;" name="Dragonborn" filter="video-game-soundtracks" difficulty="Advanced" composer="Jeremy Soule" routeToImage="images/displaySheets/Dragonborn.jpg" />
           </a>
-        </div> -->
-      </div>
+        </div>
+      </div> -->
       <button type="button" class="btn btn-outline-danger btn-lg" v-on:click="goToRoute('/browse')">Browse Sheet Music</button>
     </div>
 
@@ -136,17 +136,29 @@ button {
   border-radius: 0px!important;
 }
 
-.songs {
+/* .songs-holder {
   overflow: hidden;
+  width: 100%;
+
+}
+
+.songs {
+  width: 1650px;
+  margin-left: 50%!important;
+  transform: translateX(-819px);
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  transition: transform 0.6s;
+}
+
+.songs:hover {
+  transform: translateX(-1152px);
 }
 
 .song {
-  /* display: inline-block!important; */
   margin-left: 20px!important;
   margin-right: 20px!important;
-}
+} */
 
 .hero-image {
   width: 100%;

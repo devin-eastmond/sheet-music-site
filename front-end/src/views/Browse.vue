@@ -210,11 +210,13 @@ export default {
 }
 
 .form-block h2 {
+  margin-top: 20px;
   margin-bottom: 30px;
 }
 
 .form-block button {
   margin: 35px 0;
+  margin-bottom: 50px;
 }
 
 .form-block label {

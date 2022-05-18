@@ -1,54 +1,37 @@
 <template>
-  <div id="carouselExampleControls" class="carousel" data-bs-ride="carousel">
-      <div class="carousel-inner">
-          <div class="carousel-item active">
-            <router-link :to="getSongLink()">
-              <SheetInfo style="zoom: 0.9;" name="Dragonborn" filter="video-game-soundtracks" difficulty="Advanced" composer="Jeremy Soule" routeToImage="images/displaySheets/Dragonborn.jpg" />
-            </router-link>
-          </div>
-          <div class="carousel-item">
-            <router-link :to="getSongLink()">
-              <SheetInfo style="zoom: 0.9;" name="Dragonborn" filter="video-game-soundtracks" difficulty="Advanced" composer="Jeremy Soule" routeToImage="images/displaySheets/Dragonborn.jpg" />
-            </router-link>          </div>
-          <div class="carousel-item">
-            <router-link :to="getSongLink()">
-              <SheetInfo style="zoom: 0.9;" name="Dragonborn" filter="video-game-soundtracks" difficulty="Advanced" composer="Jeremy Soule" routeToImage="images/displaySheets/Dragonborn.jpg" />
-            </router-link>          </div>
-          <div class="carousel-item">
-            <router-link :to="getSongLink()">
-              <SheetInfo style="zoom: 0.9;" name="Dragonborn" filter="video-game-soundtracks" difficulty="Advanced" composer="Jeremy Soule" routeToImage="images/displaySheets/Dragonborn.jpg" />
-            </router-link>          </div>
-          <div class="carousel-item">
-            <router-link :to="getSongLink()">
-              <SheetInfo style="zoom: 0.9;" name="Dragonborn" filter="video-game-soundtracks" difficulty="Advanced" composer="Jeremy Soule" routeToImage="images/displaySheets/Dragonborn.jpg" />
-            </router-link>          </div>
-          <div class="carousel-item">
-            <router-link :to="getSongLink()">
-              <SheetInfo style="zoom: 0.9;" name="Dragonborn" filter="video-game-soundtracks" difficulty="Advanced" composer="Jeremy Soule" routeToImage="images/displaySheets/Dragonborn.jpg" />
-            </router-link>          </div>
-          <div class="carousel-item">
-            <router-link :to="getSongLink()">
-              <SheetInfo style="zoom: 0.9;" name="Dragonborn" filter="video-game-soundtracks" difficulty="Advanced" composer="Jeremy Soule" routeToImage="images/displaySheets/Dragonborn.jpg" />
-            </router-link>          </div>
-          <div class="carousel-item">
-            <router-link :to="getSongLink()">
-              <SheetInfo style="zoom: 0.9;" name="Dragonborn" filter="video-game-soundtracks" difficulty="Advanced" composer="Jeremy Soule" routeToImage="images/displaySheets/Dragonborn.jpg" />
-            </router-link>          </div>
-          <div class="carousel-item">
-            <router-link :to="getSongLink()">
-              <SheetInfo style="zoom: 0.9;" name="Dragonborn" filter="video-game-soundtracks" difficulty="Advanced" composer="Jeremy Soule" routeToImage="images/displaySheets/Dragonborn.jpg" />
-            </router-link>          </div>
-      </div>
-      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <!-- <span class="visually-hidden">Previous</span> -->
-          <i class='fas fa-arrow-circle-left' style='font-size:48px;'></i>
-      </button>
-      <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <!-- <span class="visually-hidden">Next</span> -->
-          <i class='fas fa-arrow-circle-right' style='font-size:48px;'></i>
-      </button>
+  <div class="songs-holder">
+    <!-- <Carousel/> -->
+    <div id="songs">
+      <!-- <div id="songsList"> -->
+        <a class="song">
+          <router-link :to="getSongLink()">
+            <SheetInfo style="zoom: 0.9;" name="Dragonborn1" filter="video-game-soundtracks" difficulty="Advanced" composer="Jeremy Soule" routeToImage="images/displaySheets/Dragonborn.jpg" />
+          </router-link>
+        </a>
+        <a class="song">
+          <router-link :to="getSongLink()">
+            <SheetInfo style="zoom: 0.9;" name="Dragonborn2" filter="video-game-soundtracks" difficulty="Advanced" composer="Jeremy Soule" routeToImage="images/displaySheets/Dragonborn.jpg" />
+          </router-link>
+        </a>
+        <a class="song">
+          <router-link :to="getSongLink()">
+            <SheetInfo style="zoom: 0.9;" name="Dragonborn3" filter="video-game-soundtracks" difficulty="Advanced" composer="Jeremy Soule" routeToImage="images/displaySheets/Dragonborn.jpg" />
+          </router-link>
+        </a>
+        <a class="song">
+          <router-link :to="getSongLink()">
+            <SheetInfo style="zoom: 0.9;" name="Dragonborn4" filter="video-game-soundtracks" difficulty="Advanced" composer="Jeremy Soule" routeToImage="images/displaySheets/Dragonborn.jpg" />
+          </router-link>
+        </a>
+        <a class="song">
+          <router-link :to="getSongLink()">
+            <SheetInfo style="zoom: 0.9;" name="Dragonborn5" filter="video-game-soundtracks" difficulty="Advanced" composer="Jeremy Soule" routeToImage="images/displaySheets/Dragonborn.jpg" />
+          </router-link>
+        </a>
+      <!-- </div> -->
+    </div>
+    <i id="left-arrow" class='fas fa-arrow-circle-left' v-on:click="previousSong"></i>
+    <i id="right-arrow" class='fas fa-arrow-circle-right' v-on:click="nextSong"></i>
   </div>
 </template>
 
@@ -57,50 +40,92 @@
 import SheetInfo from '@/components/SheetInfo.vue'
 export default {
   name: 'Carousel',
+  data() {
+    return {
+      firstSongPosition: -159,
+      currentSongPosition: -159,
+      currentSong: 1,
+      numSongs: 5,
+      songLength: 330,
+      isAnimating: false
+    }
+  },
   components: {
     SheetInfo
   },
   mounted () {
     const $ = require('jquery');
-// We declare it globally
-window.$ = $;
+    // We declare it globally
+    window.$ = $;
 
-// You can use it now
-// $('body').css('background-color', 'orange');
-    var multipleCardCarousel = document.querySelector(
-      "#carouselExampleControls"
-    );
-    if (window.matchMedia("(min-width: 768px)").matches) {
-      // var carousel = new bootstrap.Carousel(multipleCardCarousel, {
-      //   interval: false,
-      // });
-      // console.log(carousel);
-      var carouselWidth = $(".carousel-inner")[0].scrollWidth;
-      var cardWidth = $(".carousel-item").width();
-      var scrollPosition = 0;
-      $("#carouselExampleControls .carousel-control-next").on("click", function () {
-        if (scrollPosition < carouselWidth - cardWidth * 4) {
-          scrollPosition += cardWidth;
-          $("#carouselExampleControls .carousel-inner").animate(
-            { scrollLeft: scrollPosition },
-            600
-          );
-        }
-      });
-      $("#carouselExampleControls .carousel-control-prev").on("click", function () {
-        if (scrollPosition > 0) {
-          scrollPosition -= cardWidth;
-          $("#carouselExampleControls .carousel-inner").animate(
-            { scrollLeft: scrollPosition },
-            600
-          );
-        }
-      });
-    } else {
-      $(multipleCardCarousel).addClass("slide");
+    const node = document.getElementById("songs");
+    for (let i = 0; i < this.numSongs; i++) {
+      const clone = node.childNodes[i].cloneNode(true);
+      document.getElementById("songs").appendChild(clone);
     }
+    for (let i = 0; i < this.numSongs; i++) {
+      const clone = node.childNodes[i].cloneNode(true);
+      document.getElementById("songs").appendChild(clone);
+    }
+
+    document.getElementById("songs").style.width = this.songLength * this.numSongs * 3 + "px";
+    this.currentSongPosition = this.firstSongPosition - this.numSongs * this.songLength;
+    document.getElementById("songs").style.transform = "translateX(" + this.currentSongPosition + "px)";
+
+    // You can use it now
   },
   methods: {
+    nextSong() {
+      if (!this.isAnimating) {
+        this.isAnimating = true;
+        if (this.currentSong == this.numSongs) {
+          this.rewind();
+          this.currentSong = 1;
+        } else {
+          this.currentSong++;
+        }
+        this.currentSongPosition -= 330;
+        document.getElementById("songs").style.transform = 'translateX(' + this.currentSongPosition + 'px)';
+        setTimeout(() => { this.isAnimating = false; }, 300);
+      }
+
+    },
+    rewind() {
+      document.getElementById("songs").classList.add("notransition");
+      this.currentSongPosition = this.firstSongPosition - (this.numSongs - 1) * this.songLength;
+      document.getElementById("songs").style.transform = 'translateX(' + this.currentSongPosition + 'px)';
+      document.getElementById("songs").offsetHeight;
+      document.getElementById("songs").classList.remove("notransition");
+    },
+    fastFoward() {
+      document.getElementById("songs").classList.add("notransition");
+      this.currentSongPosition = this.firstSongPosition - this.numSongs * this.songLength * 2;
+      document.getElementById("songs").style.transform = 'translateX(' + this.currentSongPosition + 'px)';
+      document.getElementById("songs").offsetHeight;
+      document.getElementById("songs").classList.remove("notransition");
+    },
+    goToSong(songNum) {
+      console.log(songNum);
+      document.getElementById("songs").classList.add("notransition");
+      this.currentSongPosition = this.firstSongPosition - (songNum - 1) * this.songLength - this.numSongs * this.songLength;
+      document.getElementById("songs").style.transform = 'translateX(' + this.currentSongPosition + 'px)';
+      document.getElementById("songs").offsetHeight;
+      document.getElementById("songs").classList.remove("notransition");
+    },
+    previousSong() {
+      if (!this.isAnimating) {
+        this.isAnimating = true;
+        if (this.currentSong == 1) {
+          this.currentSong = this.numSongs;
+          this.fastFoward();
+        } else {
+          this.currentSong--;
+        }
+        this.currentSongPosition += 330;
+        document.getElementById("songs").style.transform = 'translateX(' + this.currentSongPosition + 'px)';
+        setTimeout(() => { this.isAnimating = false; }, 300);
+      }
+    },
     getSongLink() {
       return "/viewSong?song=2";
     }
@@ -109,90 +134,59 @@ window.$ = $;
 </script>
 
 <style>
-  /* .carousel-inner {
-    padding: 1em;
-  } */
-  .carousel-control-prev,
-  .carousel-control-next {
-    /* background-color: #e1e1e1; */
-    width: 6vh;
-    height: 6vh;
-    border-radius: 50%!important;
-    top: 50%;
-    transform: translateY(-50%);
-    color: rgb(50, 50, 50);
-    transition: 0.2s;
-  }
+#left-arrow,
+#right-arrow {
+  position: absolute;
+  bottom: 400px;
+  font-size: 48px;
+  color: rgba(80, 80, 80, 0.8);
+  background-color: rgba(255, 255, 255, 0);
+  border-radius: 50%;
+  transition: color 0.2s;
+}
 
-  .carousel-control-prev:hover,
-  .carousel-control-next:hover,
-  .carousel-control-prev:focus,
-  .carousel-control-next:focus {
-    color: rgb(90, 90, 90);
-  }
+#left-arrow:hover,
+#right-arrow:hover {
+  cursor: pointer;
+  color: rgba(100, 100, 100, 0.95);
+}
 
-  @media (max-width: 767px){
-    .carousel-item {
-      margin-right: 0;
-      flex: 0 0 100%;
-      /* justify-content: center; */
-      display: block;
-      /* margin-left: 20px!important;
-      margin-right: 20px!important; */
-    }
-    .carousel-inner {
-      display: flex;
-      /* overflow: hidden;
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr; */
-    }
-  }
-  @media (min-width: 768px) and (max-width: 900px){
-    .carousel-item {
-      margin-right: 0;
-      flex: 0 0 50%;
-      /* justify-content: center; */
-      display: block;
-      /* margin-left: 20px!important;
-      margin-right: 20px!important; */
-    }
-    .carousel-inner {
-      display: flex;
-      /* overflow: hidden;
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr; */
-    }
-  }
-  @media (min-width: 901px) and (max-width: 1200px){
-    .carousel-item {
-      margin-right: 0;
-      flex: 0 0 33.333333%;
-      /* justify-content: center; */
-      display: block;
-      /* margin-left: 20px!important;
-      margin-right: 20px!important; */
-    }
-    .carousel-inner {
-      display: flex;
-      /* overflow: hidden;
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr; */
-    }
-  }
-  @media (min-width: 1201px){
-    .carousel-item {
-      margin-right: 0;
-      flex: 0 0 25%;
-      /* justify-content: center; */
-      display: block;
-      /* margin-left: 20px!important;
-      margin-right: 20px!important; */
-    }
-    .carousel-inner {
-      display: flex;
-      /* overflow: hidden;
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr; */
-    }
-  }
+#left-arrow {
+  left: 40px;
+}
+
+#right-arrow {
+  right: 40px;
+}
+
+.songs-holder {
+  overflow: hidden;
+  width: 100%;
+  margin-left: 0px!important;
+}
+
+#songs {
+  /* width: 4950px; */
+  margin-left: 50%!important;
+  transform: translateX(-159px);
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  transition: transform 0.6s;
+}
+
+/* #songs:hover {
+  transform: translateX(-1152px);
+} */
+
+.song {
+  margin-left: 20px!important;
+  margin-right: 20px!important;
+}
+
+.notransition {
+  -webkit-transition: none !important;
+  -moz-transition: none !important;
+  -o-transition: none !important;
+  transition: none !important;
+}
 </style>
