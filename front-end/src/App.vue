@@ -37,8 +37,8 @@
               <img src="images/AltoClefNoBar.png" style="height: 30px;" id="iconNoBars">
             </router-link>
           </li>
-          <li class="nav-item" v-bind:class="isActiveLink('/a')">
-            <router-link to="/" class="nav-link">Compositions</router-link>
+          <li class="nav-item" v-bind:class="isActiveLink('/compositions')">
+            <router-link to="/compositions" class="nav-link">Compositions</router-link>
           </li>
           <li class="nav-item" v-bind:class="isActiveLink('/browse')">
             <router-link to="/browse" class="nav-link">Sheet Music</router-link>
@@ -105,7 +105,7 @@ export default {
   methods: {
     isActiveLink(activeLink) {
       if (this.$router.currentRoute.path == activeLink)
-        return "active";
+        return "activeLink";
       else {
         return ""
       }
@@ -198,7 +198,7 @@ header h1 a:hover {
   transition: 0.2s;
 }
 
-.active {
+.activeLink {
   /* background-color: rgb(0, 139, 137); */
   background-color: #9c0000;
 }
@@ -212,7 +212,7 @@ header h1 a:hover {
   /* color: rgb(0, 111, 139); */
 }
 
-.active a {
+.activeLink a {
   color: white;
 }
 

@@ -1,32 +1,88 @@
 <template>
   <div class="home" style="background-size: 600px;">
-    <div class="hero-image" style="background-image: url('images/pianoSheetMusic2.jpg');"></div>
+    <div class="hero-image" style="background-image: url('images/pianoSheetMusic3.jpg');"><h1>Piano sheet music &amp;</h1><h1>Original compositions</h1></div>
 
     <div class="rectangle rectangle-white">
-      <h2>10+ free piano arrangements in the genre of your choice</h2>
+      <h2>Download free music audio files to incorporate in your projects</h2>
+      <!-- <img src="images/sheetMusic.png" id="sheetMusicImage"> -->
+      <div>
+        <button type="button" class="btn btn-danger btn-lg" v-on:click="goToRoute('/compositions')">Browse Compositions</button>
+      </div>
+    </div>
+
+    <div class="rectangle rectangle-blue" style="background-image: url('images/pattern3.png');">
+      <h2>Browse our collection of piano sheet music</h2>
+      <!-- <img src="images/piano.png" id="pianoImage"> -->
+      <div>
+        <Carousel/>
+        <!-- <div class="songs">
+          <a class="song">
+            <SheetInfo style="zoom: 0.9;" name="Dragonborn" filter="video-game-soundtracks" difficulty="Advanced" composer="Jeremy Soule" routeToImage="images/displaySheets/Dragonborn.jpg" />
+          </a>
+          <a class="song">
+            <SheetInfo style="zoom: 0.9;" name="Dragonborn" filter="video-game-soundtracks" difficulty="Advanced" composer="Jeremy Soule" routeToImage="images/displaySheets/Dragonborn.jpg" />
+          </a>
+          <a class="song">
+            <SheetInfo style="zoom: 0.9;" name="Dragonborn" filter="video-game-soundtracks" difficulty="Advanced" composer="Jeremy Soule" routeToImage="images/displaySheets/Dragonborn.jpg" />
+          </a>
+          <a class="song">
+            <SheetInfo style="zoom: 0.9;" name="Dragonborn" filter="video-game-soundtracks" difficulty="Advanced" composer="Jeremy Soule" routeToImage="images/displaySheets/Dragonborn.jpg" />
+          </a>
+          <a class="song">
+            <SheetInfo style="zoom: 0.9;" name="Dragonborn" filter="video-game-soundtracks" difficulty="Advanced" composer="Jeremy Soule" routeToImage="images/displaySheets/Dragonborn.jpg" />
+          </a>
+        </div> -->
+      </div>
+      <button type="button" class="btn btn-outline-danger btn-lg" v-on:click="goToRoute('/browse')">Browse Sheet Music</button>
+    </div>
+
+    <div class="rectangle rectangle-white">
+      <h2>Choose your genre and difficulty level</h2>
+      <form @submit="applyFilters" id="filters">
+        <div class="row">
+          <div class="col-md-2"></div>
+          <div class="col-md-3">
+            <div class="form-group">
+              <label for="genreFilter">Genre</label>
+              <select class="form-control" id="genreFilter" v-model="genre">
+                <option value="">All</option>
+                <option value="movie-music">Movie Music</option>
+                <option value="video-game-soundtracks">Video Game Soundtracks</option>
+                <option value="religious-music">Religious Music</option>
+              </select>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="form-group">
+              <label for="difficultyFilter">Difficulty</label>
+              <select class="form-control" id="difficultyFilter" v-model="difficulty">
+                <option value="">All</option>
+                <option value="easy">Easy</option>
+                <option value="intermediate">Intermediate</option>
+                <option value="advanced">Advanced</option>
+              </select>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <button type="submit" id="submitFilters" class="btn btn-danger">Browse</button>
+          </div>
+        </div>
+      </form>
+      <!-- <hr>
+      <h3>Genres</h3>
       <div>
         <button type="button" class="btn btn-danger btn-lg" v-on:click="goToRoute('/browse?genre=movie-music')">Movie Music</button>
         <button type="button" class="btn btn-danger btn-lg" v-on:click="goToRoute('/browse?genre=video-game-soundtracks')">Video Game Soundtracks</button>
         <button type="button" class="btn btn-danger btn-lg" v-on:click="goToRoute('/browse?genre=religious-music')">Religious Music</button>
       </div>
-    </div>
-
-    <div class="rectangle rectangle-blue" style="background-image: url('images/pattern.png');">
-      <h2>Play according to your difficulty level</h2>
-      <img src="images/piano.png" id="pianoImage">
+      <hr>
+      <br>
+      <h3>Difficulty Levels</h3>
       <div>
-        <button type="button" class="btn btn-outline-danger btn-lg" v-on:click="goToRoute('/browse?difficulty=easy')">Easy</button>
-        <button type="button" class="btn btn-outline-danger btn-lg" v-on:click="goToRoute('/browse?difficulty=intermediate')">Intermediate</button>
-        <button type="button" class="btn btn-outline-danger btn-lg" v-on:click="goToRoute('/browse?difficulty=advanced')">Advanced</button>
-      </div>
-    </div>
-
-    <div class="rectangle rectangle-white">
-      <h2>Easily download and print your sheet music, <br>or pull it up on your iPad or tablet and <br>play it from there</h2>
-      <img src="images/sheetMusic.png" id="sheetMusicImage">
-      <div>
-        <button type="button" class="btn btn-danger btn-lg" v-on:click="goToRoute('/browse')">Download Sheet Music</button>
-      </div>
+        <button type="button" class="btn btn-danger btn-lg" v-on:click="goToRoute('/browse?difficulty=easy')">Easy</button>
+        <button type="button" class="btn btn-danger btn-lg" v-on:click="goToRoute('/browse?difficulty=intermediate')">Intermediate</button>
+        <button type="button" class="btn btn-danger btn-lg" v-on:click="goToRoute('/browse?difficulty=advanced')">Advanced</button>
+      </div> -->
     </div>
     <Footer/>
   </div>
@@ -35,14 +91,41 @@
 <script>
 // @ is an alias to /src
 import Footer from '@/components/Footer.vue'
+// import SheetInfo from '@/components/SheetInfo.vue'
+import Carousel from '@/components/Carousel.vue'
 export default {
   name: 'Home',
   components: {
-    Footer
+    Footer,
+    // SheetInfo,
+    Carousel
+  },
+  data() {
+    return {
+      genre: '',
+      difficulty: ''
+    }
+  },
+  created() {
+    window.scrollTo(0, 0);
   },
   methods: {
     goToRoute(route) {
       this.$router.push(route);
+    },
+    applyFilters(event) {
+      event.preventDefault();
+      let route = "/browse?";
+      if (this.genre != '' && this.difficulty != '') {
+        route += "genre=" + this.genre.replaceAll(' ', '-').toLowerCase();
+        route += "&difficulty=" + this.difficulty.replaceAll(' ', '-').toLowerCase();
+      } else if (this.genre != '') {
+        route += "genre=" + this.genre.replaceAll(' ', '-').toLowerCase();
+      } else if (this.difficulty != '') {
+        route += "difficulty=" + this.difficulty.replaceAll(' ', '-').toLowerCase();
+      }
+      console.log(route);
+      this.$router.replace(route);
     }
   }
 }
@@ -53,13 +136,33 @@ button {
   border-radius: 0px!important;
 }
 
+.songs {
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+}
+
+.song {
+  /* display: inline-block!important; */
+  margin-left: 20px!important;
+  margin-right: 20px!important;
+}
+
 .hero-image {
   width: 100%;
   height: 400px;
   border-color: white;
+  color: white;
+  padding: 75px;
   background-size: cover;
   background-position: left bottom; /*Positioning*/
-   background-repeat: no-repeat; /*Prevent showing multiple background images*/
+  background-repeat: no-repeat; /*Prevent showing multiple background images*/
+}
+
+.hero-image h1 {
+  font-size: 60px;
+  font-style: bold;
+  text-shadow: 2px 2px 8px #55555566;
 }
 
 .rectangle {
@@ -156,7 +259,7 @@ button {
   background-color: rgb(60, 60, 60);
   border-width: 15px;
   /* border-color: rgb(0, 107, 106); */
-  border-color: rgb(171 16 31);
+  border-color: #c82333;
   border-style: solid none;
 }
 
@@ -189,12 +292,24 @@ button {
   background-color: rgba(255, 255, 255, 0.25);
 }
 
-.btn-danger {
+/* .btn-danger {
   background-color: rgb(179, 0, 0)
-}
+} */
 
 h2 {
   font-size: 45px;
+}
+
+#filters {
+  text-align: left;
+}
+
+#filters #submitFilters {
+  margin-top: 50px;
+}
+
+#filters label {
+  font-size: 20px;
 }
 
 /* .rectangle-blue button {

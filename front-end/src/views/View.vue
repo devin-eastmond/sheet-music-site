@@ -6,8 +6,19 @@
         <div class="row">
           <div class="col-md-5">
             <a class="song-link" :href="routeToPDF">
+              <!-- <i style='font-size:24px' class='fas'>&#xf104;</i>
+              <i style='font-size:24px' class='fas'>&#xf105;</i> -->
+              <span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span>
               <img :src="thumbnailPath">
             </a>
+            <div>
+              <button class="btn btn-danger btn-lg" style="margin-top: 0px" id="btn-download">Download PDF
+                <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-download" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                  <path fill-rule="evenodd" d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"></path>
+                  <path fill-rule="evenodd" d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z"></path>
+                </svg>
+              </button>
+            </div>
             <div class="buttons">
               <button type="button" class="btn btn-danger" style="margin-top: -40px; margin-right: 20px;">
                 <i class="left arrow"></i>
@@ -23,23 +34,19 @@
             <hr>
             <div class="row">
               <div class="col-lg-4 col-md-6"><h4 style="padding-top: 20px;">Difficulty: </h4><h5>{{ difficulty }} Piano</h5></div>
-              <div class="col-lg-4 col-md-6"><h4 style="padding-top: 20px;">Genre: </h4><h5>{{ genre }}</h5></div>
+              <div class="col-lg-6 col-md-6"><h4 style="padding-top: 20px;">Genre: </h4><h5>{{ genre }}</h5></div>
             </div>
-            <div>
+            <!-- <div>
               <button class="btn btn-danger btn-lg test">Play Song
                 <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-headphones" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                   <path fill-rule="evenodd" d="M8 3a5 5 0 0 0-5 5v4.5H2V8a6 6 0 1 1 12 0v4.5h-1V8a5 5 0 0 0-5-5z"></path>
                   <path d="M11 10a1 1 0 0 1 1-1h2v4a1 1 0 0 1-1 1h-1a1 1 0 0 1-1-1v-3zm-6 0a1 1 0 0 0-1-1H2v4a1 1 0 0 0 1 1h1a1 1 0 0 0 1-1v-3z"></path>
                 </svg>
               </button>
-            </div>
-            <div>
-              <button class="btn btn-danger btn-lg" style="margin-top: 0px">Download PDF
-                <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-download" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                  <path fill-rule="evenodd" d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"></path>
-                  <path fill-rule="evenodd" d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z"></path>
-                </svg>
-              </button>
+            </div> -->
+
+            <div class="container2">
+              <iframe class="responsive-iframe" src="https://www.youtube.com/embed/rnh8N79Ljms" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             </div>
           </div>
         </div>
@@ -65,6 +72,9 @@ export default {
   components: {
     Header,
     Footer,
+  },
+  created() {
+    window.scrollTo(0, 0);
   },
   computed: {
     thumbnailPath() {
@@ -104,6 +114,24 @@ export default {
 
 <style>
 
+.container2 {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  padding-top: 56.25%; /* 16:9 Aspect Ratio (divide 9 by 16 = 0.5625) */
+}
+
+/* Then style the iframe to fit in the container div with full height and width */
+.responsive-iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+}
+
 .test {
   margin-bottom: 0px;
 }
@@ -115,42 +143,39 @@ export default {
 
 .page-header {
   /* color: rgb(0, 111, 139); */
-  color: rgb(80, 80, 80);
-  margin: 40px;
+  /* color: rgb(80, 80, 80);
+  margin: 40px; */
 }
 
-.form-block {
-  padding: 0px 40px;
-}
-
-.form-block select {
-  margin-top: 5px;
-  margin-bottom: 30px;
-  max-width: 250px;
-}
-
-.form-block h2 {
-  margin-bottom: 30px;
-}
-
-.form-block button {
-  margin: 35px 0;
-}
-
-.form-block label {
-  color: rgb(0, 111, 139);
-}
+/* .form-block label {
+  color: #c82333;
+} */
 
 .rectangle-white h2, .rectangle-white h3, .rectangle-white h4 {
   /* color: rgb(0, 111, 139); */
   /* color: rgb(80, 80, 80); */
 }
 
+iframe {
+  margin-top: 21px;
+  width: 560px;
+  height: 315px;
+}
+
 .song-link img {
   width: 95%;
   height: auto;
-  margin-bottom: 0px;
+  margin-bottom: 50px;
   padding-bottom: 0px;
+  border: 10px solid #c82333;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)!important;
+}
+
+#btn-download {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 200px;
 }
 
 .arrow {
@@ -173,6 +198,6 @@ export default {
 }
 
 .red-header {
-  color: rgb(179, 0, 0)!important;
+  color: #c82333!important;
 }
 </style>

@@ -42,53 +42,54 @@ export default {
 
 <style>
 .SheetInfo {
-  width: 300px;
-  height: 400px;
-  background-size: 300px auto;
-  margin-bottom: 20px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  width: 300px!important;
+  height: 400px!important;
+  background-size: 300px auto!important;
+  margin-bottom: 20px!important;
+  display: flex!important;
+  align-items: center!important;
+  justify-content: center!important;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)!important;
 }
 .sheet-info {
   /* color: white; */
   /* background-color: rgb(0, 111, 139); */
-  color: white;
-  background-color: rgb(171 16 31);
-  text-decoration: none;
-  padding: 15px;
+  color: white!important;
+  background-color: #c82333!important;
+  text-decoration: none!important;
+  padding: 15px!important;
   margin: auto 0;
-  width: 330px;
-  height: 175px;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  width: 330px!important;
+  height: 175px!important;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)!important;
   position: relative;
+  text-align: left;
 }
 .sheet-info h5 {
-  margin-top: 5px;
-  margin-bottom: 5px;
+  margin-top: 5px!important;
+  margin-bottom: 5px!important;
 }
 
 .text-bottom {
-  position:absolute;
-  bottom:0;
-  right: 15px;
+  position:absolute!important;
+  bottom:0!important;
+  right: 15px!important;
 }
 
 a:link {
-  text-decoration: none;
+  text-decoration: none!important;
 }
 
 a:visited {
-  text-decoration: none;
+  text-decoration: none!important;
 }
 
 a:hover {
-  text-decoration: none;
+  text-decoration: none!important;
 }
 
 a:active {
-  text-decoration: none;
+  text-decoration: none!important;
 }
 
 /*.img-thumbnail {

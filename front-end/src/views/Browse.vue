@@ -9,7 +9,7 @@
             <div class="form-group">
               <label for="genreFilter">Genre</label>
               <select class="form-control" id="genreFilter" v-model="genre">
-                <option></option>
+                <option value="">All</option>
                 <option value="movie-music">Movie Music</option>
                 <option value="video-game-soundtracks">Video Game Soundtracks</option>
                 <option value="religious-music">Religious Music</option>
@@ -20,7 +20,7 @@
             <div class="form-group">
               <label for="difficultyFilter">Difficulty</label>
               <select class="form-control" id="difficultyFilter" v-model="difficulty">
-                <option></option>
+                <option value="">All</option>
                 <option value="easy">Easy</option>
                 <option value="intermediate">Intermediate</option>
                 <option value="advanced">Advanced</option>
@@ -69,6 +69,7 @@ export default {
     }
   },
   created() {
+    window.scrollTo(0, 0);
     //this.songsList = this.$root.$data.songs;
     this.getSongs();
     if (typeof this.$route.query.genre == 'undefined') {
@@ -194,7 +195,7 @@ export default {
 .page-header {
   /* color: rgb(0, 111, 139); */
   /* color: rgb(80, 80, 80); */
-  color: rgb(179, 0, 0);
+  color: #c82333;
   margin: 40px;
 }
 
@@ -219,6 +220,7 @@ export default {
 .form-block label {
   /* color: rgb(0, 111, 139); */
   color: rgb(80, 80, 80);
+  font-size: 20px;
 }
 
 .rectangle-white h2, .rectangle-white h3, .rectangle-white h4 {
