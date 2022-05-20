@@ -1,5 +1,5 @@
 <template>
-  <div class="browse" style="background-image: url('images/pattern2.png'); background-size: 600px;">
+  <div class="browse" style="background-image: url('images/pattern3.png'); background-size: 700px;">
     <Header pageName="Browse Music" style="margin: 0px"/>
     <div class="rectangle-white form-block" style="background-color: white; padding-top: 20px;">
       <h2>Filters</h2>
@@ -32,10 +32,10 @@
           </div>
         </div>
       </form>
-      <hr>
+      <!-- <hr> -->
     </div>
     <LoadingPage v-if="isLoading"/>
-    <div class="Content" v-else>
+    <div class="Content rectangle-blue" v-else style="background-image: url('images/pattern3.png'); border: none; margin: 0px; margin-bottom: -20px; padding: 10px;">
 
       <h1 class="page-header" id="filterTitle">{{ pageTitle }}</h1>
       <div v-if="numSongs == 0">
@@ -195,12 +195,19 @@ export default {
 .page-header {
   /* color: rgb(0, 111, 139); */
   /* color: rgb(80, 80, 80); */
-  color: #c82333;
+  /* color: #c82333; */
+  color: white;
   margin: 40px;
 }
 
 .form-block {
   padding: 0px 40px;
+  border-bottom-width: 10px;
+  /* border-color: rgb(0, 107, 106); */
+  border-color: #c82333;
+  border-style: solid none;
+  border-top-width: 0px;
+  padding-bottom: 30px;
 }
 
 .form-block select {

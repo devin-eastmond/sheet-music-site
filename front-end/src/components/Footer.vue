@@ -21,7 +21,7 @@ export default {
   /* background-color: rgb(0, 67, 84); */
   background-color: rgb(139, 0, 0);
   margin-top: 20px;
-  border-top: 5px solid #9c0000;
+  border-top: 7px solid #9c0000;
 }
 
 .footer {

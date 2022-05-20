@@ -1,9 +1,9 @@
 <template>
-  <div class="home" style="background-size: 600px;">
-    <div class="hero-image" style="background-image: url('images/pianoSheetMusic3.jpg');"><h1>Piano sheet music &amp;</h1><h1>Original compositions</h1></div>
+  <div class="home">
+    <div class="hero-image" style="background-image: url('images/pianoSheetMusic2.jpeg');"><h1>Piano sheet music &amp;</h1><h1>Original compositions</h1></div>
 
     <div class="rectangle rectangle-white">
-      <h2>Download free music audio files to incorporate in your projects</h2>
+      <h2>Download free music audio files to use in your projects</h2>
       <!-- <img src="images/sheetMusic.png" id="sheetMusicImage"> -->
       <div>
         <button type="button" class="btn btn-danger btn-lg" v-on:click="goToRoute('/compositions')">Browse Compositions</button>
@@ -269,7 +269,8 @@ button {
 .rectangle-blue {
   /* background-color: rgb(0, 139, 137); */
   background-color: rgb(60, 60, 60);
-  border-width: 15px;
+  border-top-width: 15px;
+  border-bottom-width: 15px;
   /* border-color: rgb(0, 107, 106); */
   border-color: #c82333;
   border-style: solid none;
@@ -314,14 +315,21 @@ h2 {
 
 #filters {
   text-align: left;
+  margin-top: 45px;
 }
 
 #filters #submitFilters {
-  margin-top: 50px;
+  margin-top: 37px;
+  margin-left: 5px;
 }
 
 #filters label {
   font-size: 20px;
+}
+
+.form-group {
+  margin-bottom: 0px!important;
+  margin-top: 0px!important;
 }
 
 /* .rectangle-blue button {

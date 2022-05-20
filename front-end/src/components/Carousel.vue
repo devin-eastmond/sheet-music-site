@@ -30,8 +30,16 @@
         </a>
       <!-- </div> -->
     </div>
-    <i id="left-arrow" class='fas fa-arrow-circle-left' v-on:click="previousSong"></i>
-    <i id="right-arrow" class='fas fa-arrow-circle-right' v-on:click="nextSong"></i>
+    <div id="left-arrow" v-on:click="previousSong">
+      <div class="fade-effect">
+        <i class='fas fa-arrow-left'></i>
+      </div>
+    </div>
+    <div id="right-arrow" v-on:click="nextSong">
+      <div class="fade-effect">
+        <i class='fas fa-arrow-right'></i>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -137,31 +145,90 @@ export default {
 #left-arrow,
 #right-arrow {
   position: absolute;
-  bottom: 400px;
-  font-size: 48px;
-  color: rgba(80, 80, 80, 0.8);
-  background-color: rgba(255, 255, 255, 0);
+  bottom: 25px;
+  font-size: 45px;
+  color: rgba(255, 255, 255, 0.55);
+  background-color: rgba(255, 100, 100, 0.0);
+  box-shadow: 0 0 10px 10px rgba(255, 100, 100, 0.0);
   border-radius: 50%;
-  transition: color 0.2s;
+  transition: 0.1s;
+  width: 150px;
+  height: 320px;
+  /* overflow: hidden; */
 }
 
 #left-arrow:hover,
 #right-arrow:hover {
   cursor: pointer;
-  color: rgba(100, 100, 100, 0.95);
+  color: rgba(255, 255, 255, 0.95);
+  /* background-color: rgba(255, 100, 100, 0.4);
+  box-shadow: 0 0 10px 10px rgba(255, 100, 100, 0.4); */
+}
+
+.songs-holder i {
+  border-radius: 50%;
+  /* background-color: rgba(255, 255, 255, 0.5); */
+  background-color: rgba(100, 100, 100, 0.8);
+  /* border: 2px solid rgba(255, 255, 255, 0.5); */
+  width: 50px;
+  height: 50px;
+  transition: right 0.2s, background-color 0.2s, left 0.2s, border-color 0.2s;
+  padding-top: 2.5px;
+}
+
+#left-arrow i {
+  right: 0px;
+  bottom: 140px;
+  position: absolute;
+
+}
+
+#right-arrow i {
+  left: 0px;
+  bottom: 140px;
+  position: absolute;
+}
+
+#left-arrow:hover i {
+  right: 15px;
+  background-color: rgba(0, 0, 0, 0);
+  border-color: rgba(0, 0, 0, 0);
+}
+
+#right-arrow:hover i {
+  left: 15px;
+  background-color: rgba(0, 0, 0, 0);
+  border-color: rgba(0, 0, 0, 0);
 }
 
 #left-arrow {
-  left: 40px;
+  left: -75px;
 }
 
 #right-arrow {
-  right: 40px;
+  right: -75px;
+}
+
+.fade-effect {
+  transition: 0.4s;
+  border-radius: 50%;
+  height: 80%;
+  background-color: rgba(255, 35, 51, 0.0);
+  box-shadow: 0 0 50px 50px rgba(255, 35, 51, 0.0);
+  width: 80%;
+}
+
+#left-arrow:hover .fade-effect,
+#right-arrow:hover .fade-effect {
+  background-color: rgba(255, 35, 51, 0.5);
+  box-shadow: 0 0 50px 50px rgba(255, 35, 51, 0.5);
+
 }
 
 .songs-holder {
   overflow: hidden;
   width: 100%;
+  position: relative;
   margin-left: 0px!important;
 }
 

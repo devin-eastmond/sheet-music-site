@@ -3,18 +3,18 @@
   <div id="nav">
     <header>
       <div class="row">
-        <div class="col-md-3">
+        <div class="col-md-5 col-lg-4">
           <router-link to="/">
-            <img src="images/logo2.png" style="width: 300px;"/>
+            <img src="images/logo2.png" style="width: 300px; margin-bottom: 10px;"/>
           </router-link>
           <!-- <h1>
             <router-link to="/">Eastmond Music</router-link>
           </h1> -->
         </div>
-        <div class="col-md-6">
+        <div class="col-md-6 col-lg-5">
           <form id="searchBar" class="form-inline my-2 my-lg-0" @submit="searchSubmit" style="display: inline">
-            <input class="form-control mr-sm-2" id="searchInput" type="search" placeholder="Search" aria-label="Search" v-model="searchInput">
-            <button class="btn btn-dark my-2 my-sm-0" id="submitSearch" type="submit">Search</button>
+            <input class="form-control mr-sm-2" id="searchInput" type="search" placeholder="Search" aria-label="Search" v-model="searchInput" style="display: inline-block">
+            <button class="btn btn-dark my-2 my-sm-0" id="submitSearch" type="submit" style="display: inline-block">Search</button>
           </form>
         </div>
         <div class="col-md-3">
@@ -23,20 +23,25 @@
     </header>
 
     <!-- NAVBAR -->
-    <nav class="navbar navbar-expand-lg">
+    <nav class="navbar navbar-expand-lg" style="padding-left: 10px;">
       <div class="navbar-dark">
+        <router-link to="/" class="navbar-brand" id="homeIcon">
+          <img src="images/AltoClef.png" style="height: 30px;" id="iconWithBars">
+          <img src="images/AltoClefNoBar.png" style="height: 30px;" id="iconNoBars">
+        </router-link>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
+
       </div>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
-          <li class="nav-item" id="homeIcon">
+          <!-- <li class="nav-item" id="homeIcon">
             <router-link to="/" class="nav-link">
               <img src="images/AltoClef.png" style="height: 30px;" id="iconWithBars">
               <img src="images/AltoClefNoBar.png" style="height: 30px;" id="iconNoBars">
             </router-link>
-          </li>
+          </li> -->
           <li class="nav-item" v-bind:class="isActiveLink('/compositions')">
             <router-link to="/compositions" class="nav-link">Compositions</router-link>
           </li>
@@ -63,8 +68,13 @@
               <router-link to="/browse?difficulty=advanced" class="dropdown-item">Advanced</router-link>
             </div>
           </li>
+        </ul>
+        <ul class="navbar-nav navbar-right">
           <li class="nav-item" v-bind:class="isActiveLink('/about')">
             <router-link to="/about" class="nav-link">About</router-link>
+          </li>
+          <li class="nav-item" v-bind:class="isActiveLink('/contact')">
+            <router-link to="/contact" class="nav-link">Contact</router-link>
           </li>
         </ul>
       </div>
@@ -159,7 +169,7 @@ header h1 a:hover {
 
 #searchInput,
 #submitSearch {
-  margin-top: 6px!important;
+  margin-top: 4px!important;
   border: none;
   border-radius: 0px;
 }
@@ -169,7 +179,7 @@ header h1 a:hover {
 }
 
 #searchInput {
-  width: 75%;
+  width: 70%;
 }
 
 /******** Navbar Styling ********/
@@ -218,17 +228,25 @@ header h1 a:hover {
 
 #homeIcon {
   background-color: inherit!important;
-  width: 50px;
+  width: 30px;
+  height: 48px;
 }
 
 #homeIcon img {
   transition: 0.5s;
 
   position: absolute;
+  left: 20px;
+  top: 15px;
 }
 
 #homeIcon:hover img {
   transform: rotate(180deg);
+}
+
+#iconWithBars,
+#iconNoBars {
+  margin-top: -2px;
 }
 
 #homeIcon #iconWithBars {
@@ -296,6 +314,14 @@ a#navbarDropdown.nav-link.dropdown-toggle:focus {
   overflow: hidden;
 }
 
+.navbar-toggler {
+  position: absolute;
+  right: 10px;
+  top: 7px;
+  outline: none!important;
+  box-shadow: none!important;
+}
+
 /******** End Navbar Styling ********/
 
 .page-header {
@@ -306,5 +332,20 @@ a#navbarDropdown.nav-link.dropdown-toggle:focus {
 .logo {
   width: 26px;
   height: 26px;
+}
+
+@media all and (max-width: 630px) {
+  .hero-image h1 {
+    font-size: 40px!important;
+    margin-left: -40px!important;
+  }
+
+
+  #filters {
+    margin-top: -50px!important;
+  }
+  h2 {
+    font-size: 33px!important;
+  }
 }
 </style>

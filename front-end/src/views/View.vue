@@ -1,7 +1,7 @@
 <template>
-  <div class="view" style="background-image: url('images/pattern2.png'); background-size: 600px;">
+  <div class="view">
     <Header pageName="View Song" style="margin: 0px"/>
-    <div class="rectangle-white form-block" style="padding-top:40px;">
+    <div class="rectangle-white" style="padding-top:40px;">
       <div class="container">
         <div class="row">
           <div class="col-md-5">
