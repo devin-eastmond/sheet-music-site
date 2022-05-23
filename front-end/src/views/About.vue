@@ -43,7 +43,7 @@
 import Header from '@/components/Header.vue'
 import Footer from '@/components/Footer.vue'
 import LoadingPage from '@/components/LoadingPage.vue'
-import axios from 'axios';
+// import axios from 'axios';
 export default {
   name: 'About',
   components: {
