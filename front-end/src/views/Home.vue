@@ -3,7 +3,7 @@
     <div class="hero-image" style="background-image: url('images/pianoSheetMusic2.jpeg');"><h1>Piano sheet music &amp;</h1><h1>Original compositions</h1></div>
 
     <div class="rectangle rectangle-white">
-      <h2>Download free music audio files to use in your projects</h2>
+      <h2 class="home-title">Download free music audio files to use in your projects</h2>
       <!-- <img src="images/sheetMusic.png" id="sheetMusicImage"> -->
       <div>
         <button type="button" class="btn btn-danger btn-lg" v-on:click="goToRoute('/compositions')">Browse Compositions</button>
@@ -11,7 +11,7 @@
     </div>
 
     <div class="rectangle rectangle-blue" style="background-image: url('images/pattern3.png');">
-      <h2>Browse our collection of piano sheet music</h2>
+      <h2 class="home-title">Browse our collection of piano sheet music</h2>
       <!-- <img src="images/piano.png" id="pianoImage"> -->
       <Carousel/>
       <!-- <div class="songs-holder">
@@ -37,7 +37,7 @@
     </div>
 
     <div class="rectangle rectangle-white">
-      <h2>Choose your genre and difficulty level</h2>
+      <h2 class="home-title">Choose your genre and difficulty level</h2>
       <form @submit="applyFilters" id="filters">
         <div class="row">
           <div class="col-md-2"></div>
@@ -311,6 +311,11 @@ button {
 
 h2 {
   font-size: 45px;
+}
+
+.home-title {
+  padding-left: 20px;
+  padding-right: 20px;
 }
 
 #filters {

@@ -41,6 +41,12 @@ export default {
 </script>
 
 <style>
+.SheetInfo:hover {
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.5), 0 12px 40px 0 rgba(0, 0, 0, 0.19)!important;
+  transform: scale(1.025);
+  /* transform: translateY(-3px); */
+}
+
 .SheetInfo {
   width: 300px!important;
   height: 400px!important;
@@ -50,6 +56,8 @@ export default {
   align-items: center!important;
   justify-content: center!important;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)!important;
+  transition: 0.2s;
+
 }
 .sheet-info {
   /* color: white; */

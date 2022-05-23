@@ -13,7 +13,7 @@
         </div>
         <div class="col-md-6 col-lg-5">
           <form id="searchBar" class="form-inline my-2 my-lg-0" @submit="searchSubmit" style="display: inline">
-            <input class="form-control mr-sm-2" id="searchInput" type="search" placeholder="Search" aria-label="Search" v-model="searchInput" style="display: inline-block">
+            <input class="form-control mr-sm-2" id="searchInput" type="search" placeholder="Search by song name or composer" aria-label="Search" v-model="searchInput" style="display: inline-block">
             <button class="btn btn-dark my-2 my-sm-0" id="submitSearch" type="submit" style="display: inline-block">Search</button>
           </form>
         </div>
@@ -81,7 +81,17 @@
     </nav>
     <!-- NAVBAR END -->
   </div>
-  <router-view />
+  <transition
+        name="fade"
+        mode="out-in"
+      >
+        <router-view :key="$route.path"/>
+      </transition>
+  <!-- <router-view v-slot="{ Component }">
+    <transition name="fade" mode="out-in">
+      <component :is="Component" />
+    </transition>
+  </router-view> -->
 </div>
 </template>
 
@@ -100,15 +110,23 @@ export default {
     hover1(newValue) {
       if (newValue) {
         document.getElementById("dropdown1").classList.add("show");
+        document.getElementById("dropdown1").firstChild.setAttribute("aria-expanded", true);
+        document.getElementById("dropdown1").children[1].classList.add("show");
       } else {
         document.getElementById("dropdown1").classList.remove("show");
+        document.getElementById("dropdown1").firstChild.setAttribute("aria-expanded", false);
+        document.getElementById("dropdown1").children[1].classList.remove("show");
       }
     },
     hover2(newValue) {
       if (newValue) {
         document.getElementById("dropdown2").classList.add("show");
+        document.getElementById("dropdown2").firstChild.setAttribute("aria-expanded", true);
+        document.getElementById("dropdown2").children[1].classList.add("show");
       } else {
         document.getElementById("dropdown2").classList.remove("show");
+        document.getElementById("dropdown2").firstChild.setAttribute("aria-expanded", false);
+        document.getElementById("dropdown2").children[1].classList.remove("show");
       }
     }
   },
@@ -262,7 +280,8 @@ header h1 a:hover {
   border: none;
   padding: 0px;
   margin: 0px;
-  margin-top: 2px;
+  /* margin-top: 2px; */
+  border-top: 2px solid #9c0000;
   background-color: white;
 }
 
@@ -347,5 +366,17 @@ a#navbarDropdown.nav-link.dropdown-toggle:focus {
   h2 {
     font-size: 33px!important;
   }
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition-duration: 0.2s;
+  transition-property: opacity;
+  transition-timing-function: ease;
+}
+
+.fade-enter,
+.fade-leave-active {
+  opacity: 0
 }
 </style>

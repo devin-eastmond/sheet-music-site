@@ -226,7 +226,8 @@ export default {
 }
 
 .songs-holder {
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: visible;
   width: 100%;
   position: relative;
   margin-left: 0px!important;

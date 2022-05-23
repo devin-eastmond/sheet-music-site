@@ -43,6 +43,7 @@
 import Header from '@/components/Header.vue'
 import Footer from '@/components/Footer.vue'
 import LoadingPage from '@/components/LoadingPage.vue'
+import axios from 'axios';
 export default {
   name: 'About',
   components: {
@@ -52,7 +53,7 @@ export default {
   },
   created() {
     window.scrollTo(0, 0);
-  }
+  },
 }
 </script>
 
