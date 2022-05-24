@@ -1,11 +1,12 @@
 <template>
   <div class="view">
-    <Header pageName="View Song" style="margin: 0px"/>
+    <Header pageName="View Song" hasBackButton="true" style="margin: 0px"/>
     <div class="rectangle-white" style="padding-top:40px;">
       <div class="container">
         <div class="row">
           <div class="col-md-5">
-            <a href="/browse">⬅ Browse Music</a>
+            <!-- <a href="#" onclick="history.go(-1); window.scrollTo(0, 0); return false;">⬅</a>
+            <a href="/browse">⬅ Browse Music</a> -->
             <a class="song-link" :href="routeToPDF">
               <!-- <i style='font-size:24px' class='fas'>&#xf104;</i>
               <i style='font-size:24px' class='fas'>&#xf105;</i> -->
@@ -34,8 +35,8 @@
             <h5>Composed by {{ composer }}</h5>
             <hr>
             <div class="row">
-              <div class="col-lg-4 col-md-6"><h4 style="padding-top: 20px;">Difficulty: </h4><h5>{{ difficulty }} Piano</h5></div>
-              <div class="col-lg-6 col-md-6"><h4 style="padding-top: 20px;">Genre: </h4><h5>{{ genre }}</h5></div>
+              <div class="col-lg-4 col-md-6"><h4 style="padding-top: 20px;"><b>Difficulty: </b></h4><h5>{{ difficulty }} Piano</h5></div>
+              <div class="col-lg-6 col-md-6"><h4 style="padding-top: 20px;"><b>Genre: </b></h4><h5>{{ genre }}</h5></div>
             </div>
             <!-- <div>
               <button class="btn btn-danger btn-lg test">Play Song
@@ -76,6 +77,7 @@ export default {
   },
   created() {
     window.scrollTo(0, 0);
+    history.scrollRestoration = "manual";
   },
   computed: {
     thumbnailPath() {
@@ -119,13 +121,14 @@ export default {
   position: relative;
   overflow: hidden;
   width: 100%;
-  padding-top: 56.25%; /* 16:9 Aspect Ratio (divide 9 by 16 = 0.5625) */
+  /*padding-top: 56.25%;  16:9 Aspect Ratio (divide 9 by 16 = 0.5625) */
+  padding-bottom: 56.25%;
 }
 
 /* Then style the iframe to fit in the container div with full height and width */
 .responsive-iframe {
   position: absolute;
-  top: 0;
+  /* top: 0; */
   left: 0;
   bottom: 0;
   right: 0;
@@ -170,6 +173,13 @@ iframe {
   padding-bottom: 0px;
   border: 10px solid #c82333;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)!important;
+  transition: 0.3s;
+}
+
+.song-link img:hover {
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.5), 0 12px 40px 0 rgba(0, 0, 0, 0.19)!important;
+  transform: scale(1.025);
+  /* transform: translateY(-3px); */
 }
 
 #btn-download {

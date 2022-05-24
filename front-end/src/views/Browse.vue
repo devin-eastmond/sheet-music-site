@@ -82,6 +82,7 @@ export default {
     } else {
       this.difficulty = this.$route.query.difficulty;
     }
+    history.scrollRestoration = "manual";
   },
   components: {
     Header,

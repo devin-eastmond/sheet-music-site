@@ -23,7 +23,7 @@
     </header>
 
     <!-- NAVBAR -->
-    <nav class="navbar navbar-expand-lg" style="padding-left: 10px;">
+    <nav class="navbar navbar-expand-md" style="padding-left: 10px;">
       <div class="navbar-dark">
         <router-link to="/" class="navbar-brand" id="homeIcon">
           <img src="images/AltoClef.png" style="height: 30px;" id="iconWithBars">
@@ -43,19 +43,19 @@
             </router-link>
           </li> -->
           <li class="nav-item" v-bind:class="isActiveLink('/compositions')">
-            <router-link to="/compositions" class="nav-link">Compositions</router-link>
+            <router-link to="/compositions" class="nav-link" data-toggle="collapse" data-target=".navbar-collapse.show">Compositions</router-link>
           </li>
           <li class="nav-item" v-bind:class="isActiveLink('/browse')">
-            <router-link to="/browse" class="nav-link">Sheet Music</router-link>
+            <router-link to="/browse" class="nav-link" data-toggle="collapse" data-target=".navbar-collapse.show">Sheet Music</router-link>
           </li>
           <li class="nav-item dropdown" @mouseover="hover1 = true" @mouseleave="hover1 = false" id="dropdown1">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               Genres
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <router-link to="/browse?genre=movie-music" class="dropdown-item">Movie Music</router-link>
-              <router-link to="/browse?genre=video-game-soundtracks" class="dropdown-item">Video Game Soundtracks</router-link>
-              <router-link to="/browse?genre=religious-music" class="dropdown-item">Religious Music</router-link>
+              <router-link to="/browse?genre=movie-music" class="dropdown-item" data-toggle="collapse" data-target=".navbar-collapse.show">Movie Music</router-link>
+              <router-link to="/browse?genre=video-game-soundtracks" class="dropdown-item" data-toggle="collapse" data-target=".navbar-collapse.show">Video Game Soundtracks</router-link>
+              <router-link to="/browse?genre=religious-music" class="dropdown-item" data-toggle="collapse" data-target=".navbar-collapse.show">Religious Music</router-link>
             </div>
           </li>
           <li class="nav-item dropdown" @mouseover="hover2 = true" @mouseleave="hover2 = false" id="dropdown2">
@@ -63,18 +63,18 @@
               Difficulty Levels
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <router-link to="/browse?difficulty=easy" class="dropdown-item">Easy</router-link>
-              <router-link to="/browse?difficulty=intermediate" class="dropdown-item">Intermediate</router-link>
-              <router-link to="/browse?difficulty=advanced" class="dropdown-item">Advanced</router-link>
+              <router-link to="/browse?difficulty=easy" class="dropdown-item" data-toggle="collapse" data-target=".navbar-collapse.show">Easy</router-link>
+              <router-link to="/browse?difficulty=intermediate" class="dropdown-item" data-toggle="collapse" data-target=".navbar-collapse.show">Intermediate</router-link>
+              <router-link to="/browse?difficulty=advanced" class="dropdown-item" data-toggle="collapse" data-target=".navbar-collapse.show">Advanced</router-link>
             </div>
           </li>
         </ul>
         <ul class="navbar-nav navbar-right">
           <li class="nav-item" v-bind:class="isActiveLink('/about')">
-            <router-link to="/about" class="nav-link">About</router-link>
+            <router-link to="/about" class="nav-link" data-toggle="collapse" data-target=".navbar-collapse.show">About</router-link>
           </li>
           <li class="nav-item" v-bind:class="isActiveLink('/contact')">
-            <router-link to="/contact" class="nav-link">Contact</router-link>
+            <router-link to="/contact" class="nav-link" data-toggle="collapse" data-target=".navbar-collapse.show">Contact</router-link>
           </li>
         </ul>
       </div>
@@ -85,7 +85,7 @@
         name="fade"
         mode="out-in"
       >
-      <router-view :key="$route.path"/>
+      <router-view :key="$route.fullPath"/>
     </transition>
   <!-- <router-view v-slot="{ Component }">
     <transition name="fade" mode="out-in">
@@ -106,29 +106,36 @@ export default {
       hover2: false
     }
   },
+  created() {
+    history.scrollRestoration = "manual";
+  },
   watch: {
     hover1(newValue) {
-      if (newValue) {
-        document.getElementById("dropdown1").classList.add("show");
-        document.getElementById("dropdown1").firstChild.setAttribute("aria-expanded", true);
-        document.getElementById("dropdown1").children[1].classList.add("show");
-      } else {
-        document.getElementById("dropdown1").classList.remove("show");
-        document.getElementById("dropdown1").firstChild.setAttribute("aria-expanded", false);
-        document.getElementById("dropdown1").children[1].classList.remove("show");
+      if (document.body.clientWidth > 767) {
+        if (newValue) {
+          document.getElementById("dropdown1").classList.add("show");
+          document.getElementById("dropdown1").firstChild.setAttribute("aria-expanded", true);
+          document.getElementById("dropdown1").children[1].classList.add("show");
+        } else {
+          document.getElementById("dropdown1").classList.remove("show");
+          document.getElementById("dropdown1").firstChild.setAttribute("aria-expanded", false);
+          document.getElementById("dropdown1").children[1].classList.remove("show");
+        }
       }
     },
     hover2(newValue) {
       console.log(newValue);
-      // if (newValue) {
-      //   document.getElementById("dropdown2").classList.add("show");
-      //   document.getElementById("dropdown2").firstChild.setAttribute("aria-expanded", true);
-      //   document.getElementById("dropdown2").children[1].classList.add("show");
-      // } else {
-      //   document.getElementById("dropdown2").classList.remove("show");
-      //   document.getElementById("dropdown2").firstChild.setAttribute("aria-expanded", false);
-      //   document.getElementById("dropdown2").children[1].classList.remove("show");
-      // }
+      if (document.body.clientWidth > 767) {
+        if (newValue) {
+          document.getElementById("dropdown2").classList.add("show");
+          document.getElementById("dropdown2").firstChild.setAttribute("aria-expanded", true);
+          document.getElementById("dropdown2").children[1].classList.add("show");
+        } else {
+          document.getElementById("dropdown2").classList.remove("show");
+          document.getElementById("dropdown2").firstChild.setAttribute("aria-expanded", false);
+          document.getElementById("dropdown2").children[1].classList.remove("show");
+        }
+      }
     }
   },
   methods: {
@@ -379,6 +386,18 @@ a#navbarDropdown.nav-link.dropdown-toggle:focus {
   }
   h2 {
     font-size: 33px!important;
+  }
+}
+
+@media all and (min-width: 768px) {
+  .navbar {
+    padding-right: 0px!important;
+  }
+}
+
+@media all and (max-width: 767px) {
+  .dropdown-menu {
+    border-top: none!important;
   }
 }
 
