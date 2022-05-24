@@ -5,7 +5,7 @@
       <div class="row">
         <div class="col-md-5 col-lg-4">
           <router-link to="/">
-            <img src="images/logo2.png" style="width: 300px; margin-bottom: 10px;"/>
+            <img id="logo" src="images/logo2.png"/>
           </router-link>
           <!-- <h1>
             <router-link to="/">Eastmond Music</router-link>
@@ -13,7 +13,7 @@
         </div>
         <div class="col-md-6 col-lg-5">
           <form id="searchBar" class="form-inline my-2 my-lg-0" @submit="searchSubmit" style="display: inline">
-            <input class="form-control mr-sm-2" id="searchInput" type="search" placeholder="Search by song name or composer" aria-label="Search" v-model="searchInput" style="display: inline-block">
+            <input class="form-control mr-sm-2" id="searchInput" type="search" placeholder="Song name or composer" aria-label="Search" v-model="searchInput" style="display: inline-block">
             <button class="btn btn-dark my-2 my-sm-0" id="submitSearch" type="submit" style="display: inline-block">Search</button>
           </form>
         </div>
@@ -81,12 +81,12 @@
     </nav>
     <!-- NAVBAR END -->
   </div>
-  <transition
+    <transition
         name="fade"
         mode="out-in"
       >
-        <router-view :key="$route.path"/>
-      </transition>
+      <router-view :key="$route.path"/>
+    </transition>
   <!-- <router-view v-slot="{ Component }">
     <transition name="fade" mode="out-in">
       <component :is="Component" />
@@ -119,15 +119,16 @@ export default {
       }
     },
     hover2(newValue) {
-      if (newValue) {
-        document.getElementById("dropdown2").classList.add("show");
-        document.getElementById("dropdown2").firstChild.setAttribute("aria-expanded", true);
-        document.getElementById("dropdown2").children[1].classList.add("show");
-      } else {
-        document.getElementById("dropdown2").classList.remove("show");
-        document.getElementById("dropdown2").firstChild.setAttribute("aria-expanded", false);
-        document.getElementById("dropdown2").children[1].classList.remove("show");
-      }
+      console.log(newValue);
+      // if (newValue) {
+      //   document.getElementById("dropdown2").classList.add("show");
+      //   document.getElementById("dropdown2").firstChild.setAttribute("aria-expanded", true);
+      //   document.getElementById("dropdown2").children[1].classList.add("show");
+      // } else {
+      //   document.getElementById("dropdown2").classList.remove("show");
+      //   document.getElementById("dropdown2").firstChild.setAttribute("aria-expanded", false);
+      //   document.getElementById("dropdown2").children[1].classList.remove("show");
+      // }
     }
   },
   methods: {
@@ -185,11 +186,20 @@ header h1 a:hover {
   text-decoration: none;
 }
 
+#logo {
+  width: 300px;
+  margin-bottom: 10px;
+}
+
 #searchInput,
 #submitSearch {
   margin-top: 4px!important;
   border: none;
   border-radius: 0px;
+}
+
+#searchInput::placeholder {
+  font-size: 14px;
 }
 
 #submitSearch {
@@ -355,8 +365,12 @@ a#navbarDropdown.nav-link.dropdown-toggle:focus {
 
 @media all and (max-width: 630px) {
   .hero-image h1 {
-    font-size: 40px!important;
+    font-size: 44px!important;
     margin-left: -40px!important;
+  }
+
+  #logo {
+    width: 250px;
   }
 
 

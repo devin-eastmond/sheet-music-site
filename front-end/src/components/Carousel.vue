@@ -32,12 +32,14 @@
     </div>
     <div id="left-arrow" v-on:click="previousSong">
       <div class="fade-effect">
-        <i class='fas fa-arrow-left'></i>
+        <b>⬅</b>
+        <!-- <i class='fas fa-arrow-left'></i> -->
       </div>
     </div>
     <div id="right-arrow" v-on:click="nextSong">
       <div class="fade-effect">
-        <i class='fas fa-arrow-right'></i>
+        <b>⬅</b>
+        <!-- <i class='fas fa-arrow-right'></i> -->
       </div>
     </div>
   </div>
@@ -146,7 +148,7 @@ export default {
 #right-arrow {
   position: absolute;
   bottom: 25px;
-  font-size: 45px;
+  font-size: 33px;
   color: rgba(255, 255, 255, 0.55);
   background-color: rgba(255, 100, 100, 0.0);
   box-shadow: 0 0 10px 10px rgba(255, 100, 100, 0.0);
@@ -165,7 +167,7 @@ export default {
   box-shadow: 0 0 10px 10px rgba(255, 100, 100, 0.4); */
 }
 
-.songs-holder i {
+.songs-holder b {
   border-radius: 50%;
   /* background-color: rgba(255, 255, 255, 0.5); */
   background-color: rgba(100, 100, 100, 0.8);
@@ -173,29 +175,32 @@ export default {
   width: 50px;
   height: 50px;
   transition: right 0.2s, background-color 0.2s, left 0.2s, border-color 0.2s;
-  padding-top: 2.5px;
+  /* padding-bottom: 2.5px; */
+  padding-top: 1px!important;
+  zoom: 1.1;
 }
 
-#left-arrow i {
+#left-arrow b {
   right: 0px;
   bottom: 140px;
   position: absolute;
 
 }
 
-#right-arrow i {
+#right-arrow b {
   left: 0px;
   bottom: 140px;
   position: absolute;
+  transform: rotate(180deg);
 }
 
-#left-arrow:hover i {
+#left-arrow:hover b {
   right: 15px;
   background-color: rgba(0, 0, 0, 0);
   border-color: rgba(0, 0, 0, 0);
 }
 
-#right-arrow:hover i {
+#right-arrow:hover b {
   left: 15px;
   background-color: rgba(0, 0, 0, 0);
   border-color: rgba(0, 0, 0, 0);

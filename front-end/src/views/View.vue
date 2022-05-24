@@ -5,6 +5,7 @@
       <div class="container">
         <div class="row">
           <div class="col-md-5">
+            <a href="/browse">⬅ Browse Music</a>
             <a class="song-link" :href="routeToPDF">
               <!-- <i style='font-size:24px' class='fas'>&#xf104;</i>
               <i style='font-size:24px' class='fas'>&#xf105;</i> -->
@@ -176,6 +177,7 @@ iframe {
   margin-left: auto;
   margin-right: auto;
   width: 200px;
+  margin-bottom: 40px;
 }
 
 .arrow {
