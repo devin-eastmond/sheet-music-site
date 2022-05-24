@@ -52,7 +52,7 @@
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               Genres
             </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown" v-on:click="closeDropdown(true)">
               <router-link to="/browse?genre=movie-music" class="dropdown-item" data-toggle="collapse" data-target=".navbar-collapse.show">Movie Music</router-link>
               <router-link to="/browse?genre=video-game-soundtracks" class="dropdown-item" data-toggle="collapse" data-target=".navbar-collapse.show">Video Game Soundtracks</router-link>
               <router-link to="/browse?genre=religious-music" class="dropdown-item" data-toggle="collapse" data-target=".navbar-collapse.show">Religious Music</router-link>
@@ -62,7 +62,7 @@
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               Difficulty Levels
             </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown" v-on:click="closeDropdown(false)">
               <router-link to="/browse?difficulty=easy" class="dropdown-item" data-toggle="collapse" data-target=".navbar-collapse.show">Easy</router-link>
               <router-link to="/browse?difficulty=intermediate" class="dropdown-item" data-toggle="collapse" data-target=".navbar-collapse.show">Intermediate</router-link>
               <router-link to="/browse?difficulty=advanced" class="dropdown-item" data-toggle="collapse" data-target=".navbar-collapse.show">Advanced</router-link>
@@ -85,7 +85,7 @@
         name="fade"
         mode="out-in"
       >
-      <router-view :key="$route.fullPath"/>
+      <router-view :key="$route.path"/>
     </transition>
   <!-- <router-view v-slot="{ Component }">
     <transition name="fade" mode="out-in">
@@ -139,6 +139,12 @@ export default {
     }
   },
   methods: {
+    closeDropdown(isDropdown1) {
+      let dropdown = isDropdown1 ? document.getElementById("dropdown1") : document.getElementById("dropdown2");
+      dropdown.classList.remove("show");
+      dropdown.firstChild.setAttribute("aria-expanded", false);
+      dropdown.children[1].classList.remove("show");
+    },
     isActiveLink(activeLink) {
       if (this.$router.currentRoute.path == activeLink)
         return "activeLink";

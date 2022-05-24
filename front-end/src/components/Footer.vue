@@ -2,7 +2,7 @@
   <footer >
       <!-- <a class="btn-link" href="/admin">Admin </a> -->
       <!-- <span>Click <a class="btn-link" href="https://github.com/devinator9876/sheet-music-vue.git" target="_blank">here</a> to visit my GitHub page</span> -->
-      <div class="footer"><p>Copyright © 2022 - Devin Eastmond</p></div>
+      <div class="footer"><p>Copyright © 2022 - Eastmond Music</p></div>
   </footer>
 </template>
 

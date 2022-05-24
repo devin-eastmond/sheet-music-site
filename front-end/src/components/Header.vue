@@ -1,6 +1,6 @@
 <template>
   <div class="jumbotron" style="background-image: url('images/header.jpeg');">
-    <h1><a v-if="hasBackButton" id="back-button" href="#" onclick="history.go(-1); return false;"><span>⬅</span><span id="placeholder">⬅</span></a> {{ pageName }}</h1>
+    <h1><a v-if="hasBackButton" id="back-button" href="#" onclick="history.go(-1); return false;"><span>➜</span><span id="placeholder">⬅</span></a> {{ pageName }}</h1>
   </div>
 </template>
 
@@ -44,6 +44,7 @@ export default {
 #back-button span:not(#placeholder) {
   color: white;
   transition: 0.2s;
+  transform: rotate(180deg)!important;
   position: absolute;
 }
 
@@ -52,7 +53,8 @@ export default {
 }
 
 #back-button:hover span:not(#placeholder) {
-  transform: translateX(-10px)!important;
+  transform: translateX(-10px) rotate(180deg)!important;
+  /* transform: rotate(180deg)!important; */
 
 }
 </style>

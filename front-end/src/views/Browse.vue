@@ -104,7 +104,7 @@ export default {
         filteredSongs = filteredSongs.filter(song => song.genre === genreFilter);
       }
       if (searchFilter != null) {
-        filteredSongs = filteredSongs.filter(song => (song.name.includes(searchFilter) || song.composer.includes(searchFilter)));
+        filteredSongs = filteredSongs.filter(song => (song.name.toLowerCase().includes(searchFilter.toLowerCase()) || song.composer.toLowerCase().includes(searchFilter.toLowerCase())));
       }
       return filteredSongs;
     },
@@ -122,6 +122,10 @@ export default {
       return filteredSongs.length;
     },
     pageTitle() {
+      let search = this.$route.query.search;
+      if (search != null) {
+        return 'Search results: "' + search + '"'
+      }
       let genre = this.$route.query.genre;
       let difficulty = this.$route.query.difficulty;
       if (typeof genre == 'undefined' && typeof difficulty == 'undefined') {

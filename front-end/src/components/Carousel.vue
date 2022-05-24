@@ -32,13 +32,13 @@
     </div>
     <div id="left-arrow" v-on:click="previousSong">
       <div class="fade-effect">
-        <b>⬅</b>
+        <b>➜</b>
         <!-- <i class='fas fa-arrow-left'></i> -->
       </div>
     </div>
     <div id="right-arrow" v-on:click="nextSong">
       <div class="fade-effect">
-        <b>⬅</b>
+        <b>➜</b>
         <!-- <i class='fas fa-arrow-right'></i> -->
       </div>
     </div>
@@ -176,7 +176,7 @@ export default {
   height: 50px;
   transition: right 0.2s, background-color 0.2s, left 0.2s, border-color 0.2s;
   /* padding-bottom: 2.5px; */
-  padding-top: 1px!important;
+  padding-top: 0px!important;
   zoom: 1.1;
 }
 
@@ -184,6 +184,7 @@ export default {
   right: 0px;
   bottom: 140px;
   position: absolute;
+  transform: rotate(180deg);
 
 }
 
@@ -191,7 +192,6 @@ export default {
   left: 0px;
   bottom: 140px;
   position: absolute;
-  transform: rotate(180deg);
 }
 
 #left-arrow:hover b {
